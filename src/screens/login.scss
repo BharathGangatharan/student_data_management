@@ -1,0 +1,105 @@
+@use '../styles/main.scss' as m;
+
+#loginForm {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1c2e4a;
+    padding: 10px 80px;
+    height: 100vh;
+
+    & > .row > div {
+        padding: 0;
+        height: 440px;
+        border-radius: 5px;
+    }
+
+    & > .row > div:last-of-type {
+        background-color: #e9e9eb;
+    }
+
+    .imageContainer{
+        & img {
+            width: 100%;
+            min-height: 440px;
+        }
+    }
+
+    .loginFormContainer {
+        padding: 10px 70px 30px;
+
+        & > div:first-child {
+            color: m.$projBlue;
+            font-size: 35px;
+            text-align: center;
+            padding-bottom: 10px;
+            font-weight: 700;
+        }
+
+        & .loginTitle {
+            display: flex;
+            justify-content: center;
+            font-size: 20px;
+            font-family: m.$fontCondensed;
+            color: m.$projBlue;
+            padding-bottom: 20px;
+
+            & > div {
+                background-color: m.$projBlue;
+                color: m.$projWhite;
+                padding: 5px 20px;
+                cursor: pointer;
+                border-radius: 25px;
+
+                &:first-child {
+                    margin-right: -10px;
+                    z-index: 5;
+                }
+            }
+
+            & .active {
+                background-color: m.$projRed;
+            }
+        }
+
+        form  {
+            & > div:nth-child(2) {
+                position: relative;
+            }
+
+            & label {
+                font-size: 22px;
+                font-weight: 500;
+                font-family: m.$fontCondensed;
+                color: m.$projBlue;
+            }
+
+            & .submitButton {
+                background-color: m.$projRed;
+                color: m.$projWhite;
+            }
+
+            & input {
+                border: 1px solid m.$projBlue;
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+
+            & .error {
+                color: red;
+                padding: 5px 0;
+                font-weight: 500;
+                display: inline-block;
+            }
+        }
+
+        .eyeIcon {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            cursor: pointer;
+        }
+    }
+}
