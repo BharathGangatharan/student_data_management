@@ -1,0 +1,40 @@
+@use '../../styles/main.scss' as m;
+
+.timeTableContainer {
+    & table {
+        & thead {
+            vertical-align: middle;
+            tr {
+                th {
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: m.$projBlue;
+                    background-color: m.$projYellow;
+                }
+            }
+        }
+
+        & tbody {
+            vertical-align: middle;
+            
+            & .weekdays {
+                background-color: #fff;
+            }
+
+            & .subjects {
+                background-color: m.$projBlue;
+                color: #fff;
+                font-size: 16px;
+            }
+
+            & tr {
+                & > td:first-child {
+                    background-color: m.$projRed;
+                    color: #fff;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}

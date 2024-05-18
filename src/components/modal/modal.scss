@@ -1,0 +1,28 @@
+@use '../../styles/main.scss' as m;
+
+.modal-dialog {
+    width: 100%;
+    max-width: 900px;
+    margin: 45 auto 0;
+
+    & .modal-content {
+        & .modal-header {
+            background-color: m.$projLightWhite;
+            border-bottom: 1px solid m.$projBlue;
+            & .modal-title {
+                font-size: 30px;
+                font-weight: bold;
+                color: m.$projBlue;
+            }
+            & svg {
+                font-size: 30px;
+                cursor: pointer;
+                fill: m.$projRed;
+            }
+        }
+
+        & .modal-body {
+            background-color: m.$projLightWhite;
+        }
+    }
+}
