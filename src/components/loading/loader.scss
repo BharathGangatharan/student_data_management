@@ -1,0 +1,9 @@
+@use '../../styles/main.scss' as m;
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: m.$projLightWhite;
+}

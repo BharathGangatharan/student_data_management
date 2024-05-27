@@ -29,26 +29,28 @@
                 border-radius: 10px;
                 position: relative;
 
-                &::after {
-                    content: "Marks & Attendance";
-                    position: absolute;
-                    top: 30%;
-                    left: 30%;
-                    visibility: hidden;
-                    opacity: 0;
-                    transition: opacity 0.3s ease;
-                    color: m.$projRed;
-                    font-size: 18px;
-                    font-weight: bold;
-                }
-
-                &:hover::after {
-                    visibility: visible;
-                    opacity: 1;
+                & .hoverButton {
+                    display: none;
                 }
 
                 &:hover{
                     border: 5px solid m.$projWhite;
+
+                    & .hoverButton {
+                        display: flex;
+                        position: absolute;
+                        bottom: 20px;
+                        justify-content: space-between;
+
+                        & .button-d {
+                            background-color: m.$projBlue;
+                            color: m.$projWhite;
+
+                            &:first-child {
+                                margin-right: 15px;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -91,4 +93,85 @@
             }
         }
     }
+}
+
+#staffMarks {
+    background-color: m.$projYellow;
+    padding: 80px 0 50px;
+
+    & .container {
+        background-color: m.$projBlue;
+        & > .row {
+            padding-top: 50px;
+            padding-bottom: 30px;
+        }
+
+        & .leftBlock {
+            padding: 0 30px;
+
+            & .classDetails {
+                & > div {
+                    font-weight: bold;
+                    font-family: m.$fontCondensed;
+                    font-size: 22px;
+                    color: m.$projLightWhite;
+
+                    &:nth-child(2) {
+                        padding-top: 5px;
+                    }
+
+                    &.selectContainer {
+                        padding-top: 20px;
+                        width: 40%;
+
+                        & select {
+                            cursor: pointer;
+
+                            &:focus {
+                                border: none;
+                                outline: none;
+                                box-shadow: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            & .marksTable {
+                padding-top: 70px;
+            }
+        }
+
+        & .rightBlock {
+            padding: 0 30px;
+            display: flex;
+            justify-content: flex-end;
+
+            & .importBlock {
+                text-align: end;
+
+                & .title {
+                    font-size: 15px;
+                    font-weight: 400;
+                    font-family: m.$fontCondensed;
+                    color: m.$projYellow;
+                    padding-bottom: 10px;
+                }
+
+                & label {
+                    background-color: m.$projYellow;
+                    padding: 5px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+                & span {
+                    color: #5fff55;
+                    font-size: 15px;
+                    font-weight: bold;
+                    display: block;
+                }
+            }
+        }
+    }
+
 }
