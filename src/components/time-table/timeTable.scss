@@ -7,7 +7,7 @@
             tr {
                 th {
                     font-size: 16px;
-                    font-weight: bold;
+                    font-family: m.$fontBold;
                     color: m.$projBlue;
                     background-color: m.$projYellow;
                 }
@@ -32,7 +32,11 @@
                     background-color: m.$projRed;
                     color: #fff;
                     font-size: 16px;
-                    font-weight: 500;
+                    font-family: m.$fontMedium;
+                }
+
+                td {
+                    font-family: m.$fontRegular;
                 }
             }
         }

@@ -14,7 +14,7 @@
 
     & > div:first-child {
         font-size: 30px;
-        font-family: m.$fontCondensed;
+        font-family: m.$fontMedium;
         margin-right: 15px;
     }
 
@@ -48,6 +48,7 @@
             text-align: left;
             cursor: pointer;
             padding: 10px 0 10px 15px;
+            font-family: m.$fontRegular;
 
             &:first-child {
                 border-bottom: 1px solid m.$projLightWhite;

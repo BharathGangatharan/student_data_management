@@ -7,4 +7,29 @@ $projYellow: #ffdb70;
 $projBlack: #000;
 
 //font
-$fontCondensed: 'Roboto Condensed';
+$fontMedium: 'Roboto Medium';
+$fontRegular: 'Roboto Regular';
+$fontBold: 'Roboto Bold';
+
+
+
+@font-face {
+    font-family: 'Roboto Bold';
+    src:  url('./fonts/Roboto-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+ 
+@font-face {
+    font-family: 'Roboto Regular';
+    src:  url('./fonts/Roboto-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+ 
+@font-face {
+    font-family: 'Roboto Medium';
+    src:  url('./fonts/Roboto-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
