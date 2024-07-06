@@ -22,7 +22,7 @@
                 justify-content: center;
                 align-items: center;
                 font-size: 25px;
-                font-family: m.$fontCondensed;
+                font-family: m.$fontMedium;
                 margin-right: 30px;
                 margin-top: 20px;
                 cursor: pointer;
@@ -45,6 +45,7 @@
                         & .button-d {
                             background-color: m.$projBlue;
                             color: m.$projWhite;
+                            width: 120px;
 
                             &:first-child {
                                 margin-right: 15px;
@@ -78,7 +79,7 @@
                 justify-content: center;
                 align-items: center;
                 font-size: 25px;
-                font-family: m.$fontCondensed;
+                font-family: m.$fontMedium;
                 margin-right: 30px;
                 margin-top: 20px;
                 cursor: pointer;
@@ -111,8 +112,7 @@
 
             & .classDetails {
                 & > div {
-                    font-weight: bold;
-                    font-family: m.$fontCondensed;
+                    font-family: m.$fontMedium;
                     font-size: 22px;
                     color: m.$projLightWhite;
 
@@ -152,8 +152,7 @@
 
                 & .title {
                     font-size: 15px;
-                    font-weight: 400;
-                    font-family: m.$fontCondensed;
+                    font-family: m.$fontMedium;
                     color: m.$projYellow;
                     padding-bottom: 10px;
                 }
@@ -167,8 +166,8 @@
                 & span {
                     color: #5fff55;
                     font-size: 15px;
-                    font-weight: bold;
                     display: block;
+                    font-family: m.$fontBold;
                 }
             }
         }

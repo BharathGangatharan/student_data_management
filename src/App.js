@@ -7,6 +7,9 @@ import Header from './components/header/Header';
 import StaffMarkAndAttendance from './screens/staff/StaffMarkAndAttendance';
 import StaffMarks from './screens/staff/StaffMarks';
 import Loader from './components/loading/Loader';
+import './styles/main.scss';
+import {Provider} from 'react-redux';
+import store from './store/store';
 
 function App() {
   const [isLoading,setIsLoading] = useState(true);
@@ -20,7 +23,7 @@ function App() {
   },[]);
 
   return (
-      <div>
+      <Provider store={store}>
         {
           window.location.pathname !== "/" ? <Header /> : null
         }
@@ -37,7 +40,7 @@ function App() {
 
           )
         }
-      </div>
+      </Provider>
   );
 }
 
