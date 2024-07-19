@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import LoginImg from '../../images/loginScreen.jpg';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -8,24 +8,35 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import Button from '../../components/button/Button';
 import './login.scss';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
+import {loginRequest} from '../../store/loginReducer/action';
+import { ColorRing } from 'react-loader-spinner';
+import Loader from '../../components/loading/Loader';
 
 const Login = () => {
 
   let loginInputValues = {
-    userId:'',
+    userEmail:'',
     password:''
   }
 
   let loginInputErroStatus = {
-    userId:false,
+    userEmail:false,
     password:false
   }
 
   const [inputValues, setInputValues] = useState(loginInputValues);
   const [inputErrStatus, setInputErrStatus] = useState(loginInputErroStatus);
   const [formErrStatus, setFormErrStatus] = useState(false);
+  const [customErrStatus, setCustomErrStatus] = useState(false);
   const [passwordShow, setPasswordShow] = useState(false);
   const [loginUser, setLoginUser] = useState('student');
+  const [isLoading, setIsLoading] = useState(false)
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const loginState = useSelector((state)=>state?.loginReducer?.login);
 
   //password eye icon switch function
   const passwordShowHandler=()=>{
@@ -47,13 +58,14 @@ const Login = () => {
   const inputHandler = (e)=>{
 
     setFormErrStatus(false);
+    setCustomErrStatus(false);
 
     setInputValues((prev)=>{
       return {...prev,[e.target.name]:e.target.value}
     });
 
     //clear error value on change
-    if(inputErrStatus.userId || inputErrStatus.password) {
+    if(inputErrStatus.userEmail || inputErrStatus.password) {
       setInputErrStatus((prev)=>{
         return {...prev,[e.target.name]:false}
       });
@@ -77,16 +89,21 @@ const Login = () => {
   //formSubmit
   const formSubmit = ()=>{
     if (validateInputFields()){
-      console.log('succes');
+      const loginData = {
+        "email": inputValues.userEmail,
+        "Password": inputValues.password
+      }
 
+      dispatch(loginRequest(loginData));
+      setIsLoading(true);
       //resetting the input value
-      setInputValues(loginInputValues);
+      //setInputValues(loginInputValues);
     }
   }
 
   //formValidation
   function validateInputFields(){
-    if((inputValues.userId && inputValues.password)) {
+    if((inputValues.userEmail && inputValues.password)) {
       setFormErrStatus(false)
       return true;
     } else {
@@ -94,6 +111,17 @@ const Login = () => {
       return false;
     }
   }
+
+  useEffect(()=>{
+    if(loginState && loginState?.output === "success") {
+        localStorage.setItem("isLoggedIn", true);
+        navigate('/staff');
+    } else if(loginState?.output === "Error") {
+        setIsLoading(false);
+        setCustomErrStatus(true);
+    }
+
+  },[loginState])
 
   return (
       <Container className='loginContainer' fluid id="loginForm">
@@ -111,11 +139,11 @@ const Login = () => {
                     <Button label={"Teacher"} className={loginUser === 'teacher'&&'active'} onClick={()=>{loginUserHandler('teacher')}}/>
                   </div>
                   <Form>
-                    <Form.Group className={`${inputErrStatus.userId ? 'mb-0':'mb-3'}`}controlId="formBasicEmail">
-                      <Form.Label>User Id</Form.Label>
-                      <Form.Control value={inputValues.userId} name="userId" type="text" placeholder="Enter userid" onChange={(e)=>{inputHandler(e)}} onBlur={(e)=>{focusoutHandler(e)}}/>
+                    <Form.Group className={`${inputErrStatus.userEmail ? 'mb-0':'mb-3'}`}controlId="formBasicEmail">
+                      <Form.Label>Email</Form.Label>
+                      <Form.Control value={inputValues.userEmail} name="userEmail" type="email" placeholder="Enter email" onChange={(e)=>{inputHandler(e)}} onBlur={(e)=>{focusoutHandler(e)}}/>
                     </Form.Group>
-                    {inputErrStatus.userId && <span id="userIdError" className="error">Please enter a valid userId</span>}
+                    {inputErrStatus.userEmail && <span id="userEmailError" className="error">Please enter a valid email</span>}
                     <Form.Group className={`${inputErrStatus.password ? 'mb-0':'mb-3'}`} controlId="formBasicPassword">
                       <Form.Label>Password</Form.Label>
                       <Form.Control value={inputValues.password} name="password"  type={`${passwordShow ? 'text':'password'}`} placeholder="Enter password" onChange={(e)=>{inputHandler(e)}} onBlur={(e)=>{focusoutHandler(e)}}/>
@@ -124,8 +152,26 @@ const Login = () => {
                       }
                     </Form.Group>
                     {inputErrStatus.password && <span id="passwordError" className="error">Please enter a password</span>}
-                    <Button  className="submitButton" label={"Submit"} onClick={formSubmit}/>
+                    
+                    {
+                        isLoading ? 
+                        (           
+                            <Loader>
+                                <ColorRing
+                                    visible={true}
+                                    height="50"
+                                    width="50"
+                                    ariaLabel="color-ring-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClass="color-ring-wrapper"
+                                    colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                                />
+                            </Loader>
+                            
+                        ) : (<Button  className="submitButton" label={"Submit"} onClick={formSubmit}/>)
+                    }
                     {(formErrStatus) && <span id="passwordError" className="error"><sup>*</sup>Please fill all the fields</span>}
+                    {(customErrStatus) && <span className="error">Please enter the correct credentials*</span>}
                 </Form>
               </div>
             </Col>
