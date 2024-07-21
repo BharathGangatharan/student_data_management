@@ -4,20 +4,22 @@ import Student from "./screens/student/Student";
 import Staff from "./screens/staff/StaffMain";
 import StaffMarkAndAttendance from './screens/staff/StaffMarkAndAttendance';
 import StaffMarks from './screens/staff/StaffMarks';
+import StaffProfile from './screens/staff/StaffProfile';
 import './styles/main.scss';
 import PrivateRoute from './screens/PrivateRoute';
 import Layout from './screens/Layout';
 
 function App() {
+    const checkLoginState = localStorage.getItem('isLoggedIn');
 
   return (
       <>
         {
 
             <Routes>
-                <Route path="/" exact element={<Layout /> } >
+                <Route path="/" exact element={checkLoginState ? <Layout /> : <Login />} >
             
-                    <Route path="/login" element={<Login/>}/>
+                     <Route path="/login" element={<Login/>}/>
                     
                     <Route element={<PrivateRoute roles={["student"]} />}>
                         <Route path="/student" element={<Student/>}/>
@@ -27,6 +29,7 @@ function App() {
                         <Route path="/staff" element={<Staff/> }/>
                         <Route path="/staff/marks-attendance?/:id" element={<StaffMarkAndAttendance/>}/>
                         <Route path="/staff/marks/:id" element={<StaffMarks/>}/>
+                        <Route path="/profile" element={<StaffProfile />}/>
                     </Route>
             
                 </Route>

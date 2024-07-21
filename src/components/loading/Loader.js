@@ -1,10 +1,10 @@
 import React from 'react';
 import './loader.scss'
 
-const Loader = ({children}) => {
+const Loader = ({children,label,horizontal,labelColor}) => {
   return (
-    <div className='loader'>
-      <h5>Logging in...</h5>     
+    <div className={`${horizontal ? 'hloader':'vloader'}`}>
+      <h5 style={{'color': labelColor}}>{label}</h5>
       {children}
     </div>
   )

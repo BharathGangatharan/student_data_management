@@ -14,13 +14,17 @@ const PrivateRoute = ({roles}) => {
 
     const userHasRequiredRole = user && roles.includes(user.role) ? true : false;
      
-    // if(authState?.output === "success" && !userHasRequiredRole) {
+    // if(authState?.RESULT === "success" && !userHasRequiredRole) {
     //     return "Access Denied"
     // }
-     
-    return (
-        (getLoginState && userHasRequiredRole)? <AutoLogout><Outlet /></AutoLogout> : <Navigate to="/login" state={{ from: location }} replace />
-    );
+
+    if(getLoginState === null || getLoginState === undefined){
+        return  <Navigate to="/login" state={{ from: location }} />
+    }
+
+    if(getLoginState && userHasRequiredRole) {
+        return <AutoLogout><Outlet /></AutoLogout>
+    }
 }
 
 export default PrivateRoute;

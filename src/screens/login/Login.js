@@ -37,6 +37,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loginState = useSelector((state)=>state?.loginReducer?.login);
+  const checkLoginState = localStorage.getItem('isLoggedIn')
 
   //password eye icon switch function
   const passwordShowHandler=()=>{
@@ -113,10 +114,10 @@ const Login = () => {
   }
 
   useEffect(()=>{
-    if(loginState && loginState?.output === "success") {
+    if(loginState?.RESULT?.toLowerCase() === "success" || Boolean(checkLoginState) === true) {
         localStorage.setItem("isLoggedIn", true);
         navigate('/staff');
-    } else if(loginState?.output === "Error") {
+    } else if(loginState?.RESULT === "Error") {
         setIsLoading(false);
         setCustomErrStatus(true);
     }
@@ -156,7 +157,7 @@ const Login = () => {
                     {
                         isLoading ? 
                         (           
-                            <Loader>
+                            <Loader label={"Logging in"} horizontal={true}>
                                 <ColorRing
                                     visible={true}
                                     height="50"

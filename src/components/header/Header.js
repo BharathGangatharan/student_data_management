@@ -8,17 +8,24 @@ import TimeTable from '../time-table/TimeTable';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {resetOnLogout} from '../../store/loginReducer/action'
+import {useSelector} from 'react-redux';
 
 const Header = () => {
 
     const [modalShow, setModalShow] = useState(false);
     const checkLoginState = localStorage.getItem("isLoggedIn");
 
+    const getTeacherData = useSelector((state)=>state?.staffReducer?.teacherDetail);
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const modalHideHandler = ()=>{
         setModalShow(false)
+    }
+
+    const viewProfileHandler = ()=>{
+        navigate('/profile');
     }
 
     const logoutHandler = ()=>{
@@ -38,14 +45,14 @@ const Header = () => {
                 (
                     <Container className='headerContainer' fluid>
                         <div>
-                            Bharath
+                            {getTeacherData?.NAME}
                         </div>
                         <Dropdown>
                             <Dropdown.Toggle variant="success" id="dropdown-basic">
                                 <CgProfile/>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <div>View Profile</div>
+                                <div onClick={viewProfileHandler}>View Profile</div>
                                 <div onClick={()=>{setModalShow(true)}}>Time Table</div>
                                 <div onClick={logoutHandler}>Logout</div>
                             </Dropdown.Menu>

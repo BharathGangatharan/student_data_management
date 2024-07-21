@@ -1,9 +1,16 @@
 @use '../../styles/main.scss' as m;
 
-.loader {
+.hloader {
     display: flex;
     justify-content: center;
     align-items: center;
     // height: 100vh;
     // background-color: m.$projLightWhite;
+}
+
+.vloader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
