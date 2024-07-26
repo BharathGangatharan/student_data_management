@@ -1,5 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import {dummyStdMarksTable,dummyStdMarksHeader} from '../../dummyData';
+import {getTypesofExam,getClassStudenList} from '../../store/staffReducer/action';
+import {useDispatch, useSelector} from 'react-redux';
+import {useLocation} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -16,6 +19,11 @@ const StaffMarks = () => {
     const [fileNameType, setFileNameType]= useState([]);
     const [wrongFileUpload, setWrongFileUpload]= useState('');
     const [defaultExamType,setDefaultExamType] = useState('');
+
+    const location = useLocation();
+    const dispatch = useDispatch();
+
+    const loginState = useSelector((state)=>state?.loginReducer?.login);
 
     //exam selection handler
     const examSelectHandler = (e)=>{
@@ -48,6 +56,22 @@ const StaffMarks = () => {
         }
     }
 
+    useEffect(()=>{
+
+        const getTypesofExamData = {
+            "CLASSID": location?.state?.data?.CLASSID
+        }
+
+        const getClassStudentListData = {
+            "TEACHERID": loginState?.TEACHERID,
+            "CLASSID": location?.state?.data?.CLASSID,
+            "SUBJECTID": location?.state?.data?.SUBJECTID
+        }
+
+        dispatch(getTypesofExam(getTypesofExamData));
+        dispatch(getClassStudenList(getClassStudentListData));
+        
+    },[])
 
     useEffect(()=>{
         if(fileNameType.length === 1) {

@@ -30,3 +30,33 @@ export const getTeacherDetails = (payload) => (dispatch) => {
         });
     });
 };
+
+export const getTypesofExam = (payload) => (dispatch) => {    
+    API_POST("GETTYPEOFEXAM", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.GET_TYPEOF_EXAM,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.GET_TYPEOF_EXAM,
+            payload: err,
+        });
+    });
+};
+
+export const getClassStudenList = (payload) => (dispatch) => {    
+    API_POST("GETSTUDENTLIST", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.GET_STUDENT_LIST,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.GET_STUDENT_LIST,
+            payload: err,
+        });
+    });
+};

@@ -17,13 +17,21 @@ const StaffHome = () => {
 
     const navigateNext = (e,item)=> {
         if(!e.target.classList.contains('button-d')) {
-            navigate(`marks-attendance?${item.CLASSDESCRIPTION.replace(" ","")}`);
+            navigate(`marks-attendance?${item.CLASSDESCRIPTION.replace(" ","")}`,{
+                state:{
+                    data:item
+                }
+            });
         }
     }
 
     const navigateMark = (e,item)=>{
         if(e.target.classList.contains('button-d')) {
-            navigate(`marks/${item.CLASSDESCRIPTION.replace(" ","")}`);
+            navigate(`marks/${item.CLASSDESCRIPTION.replace(" ","")}`,{
+                state:{
+                    data:item
+                }
+            });
         }
     }
 
