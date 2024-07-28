@@ -20,6 +20,10 @@ const timeTableReducer = (state = initialState, action)=>{
             return {
                 ...state, tableUpdate: action.payload
             }
+        case actionType.RESET_SUBJECT_DATA:
+            return {
+                ...state, tableSubjectList: action.payload
+            }
         default:
             return state;
     }

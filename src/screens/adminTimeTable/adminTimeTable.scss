@@ -1,0 +1,157 @@
+@use '../../styles/main.scss' as m;
+
+.adminTimeTableContainer {
+    background-color: m.$projBlue;
+    padding: 80px 0 100px;
+
+    & .timeTableContent {
+        padding: 50px 0;
+        max-width: 70%;
+        margin: 0 auto;
+
+        & .loader {
+            margin-top: 130px;
+        }
+
+        & .info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+            margin-top: 130px;
+            background-color: m.$projWhite;
+            font-size: 18px;
+            font-family: m.$fontMedium;
+        }
+
+        & .dropDownHeader {
+            padding-bottom: 50px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            h4 {
+                color: m.$projWhite;
+                font-family: m.$fontMedium;
+                padding-right: 10px;
+                margin-bottom: 0;
+            }
+
+            & select {
+                cursor: pointer;
+                width: 150px;
+                padding: 5px;
+                font-family: m.$fontMedium;
+
+                &:checked {
+                    background-color: m.$projYellow !important;
+                }
+
+                & option {
+                    border-bottom: 1px solid m.$projBlack;
+
+                    &:checked {
+                        background-color: m.$projYellow !important;
+                    }
+                    
+                }
+            }
+        }
+
+        & .timeTableWrapper {
+            background-color: m.$projLightWhite;
+            position: relative;
+            width:100%;
+            z-index: 1;
+            margin: auto;
+            overflow: auto;
+
+            & table {
+                margin-bottom: 0;
+                width: 100%;
+                margin: auto;
+
+                & thead {
+                    & th {
+                        text-align: center;
+                        background-color: m.$projYellow;
+                        min-width: 150px;
+                        font-family: m.$fontBold;
+
+                        position: -webkit-sticky;
+                        position: sticky;
+                        top: 0;
+
+                        &:first-child {
+                            position: -webkit-sticky;
+                            position: sticky;
+                            left: 0;
+                            z-index: 2;
+                        }
+                    }
+                }
+
+                & tbody {
+                    & tr {
+                        & > td{
+                            text-align: center;
+
+                            &:first-child {
+                                position: -webkit-sticky;
+                                position: sticky;
+                                left: 0;
+                                z-index: 2;
+                                border: 1px solid m.$projWhite;
+                                font-family: m.$fontMedium;
+                                background-color: m.$projRed;
+                                color: m.$projWhite;
+                            }
+
+                            & select {
+                                &.highlighted {
+                                    background-color: m.$projYellow !important;
+                                }
+                                & option {
+                                    &:checked {
+                                        background-color: m.$projYellow !important;
+                                    }
+                                }
+                            }
+
+
+                            &:not(:first-child) {
+                                background-color: m.$projLightWhite;
+                                border: 1px solid #707074;
+                                font-family: m.$fontRegular;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        & .updateButtonWrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 25px;
+
+            & .buttonContainer {
+                width: 150px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: m.$projYellow !important;
+                    color: m.$projBlue !important;
+                }
+
+                &.disbaled {
+                    pointer-events: none;
+                }
+            }
+            
+        }
+
+    }
+    
+}

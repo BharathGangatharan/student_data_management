@@ -45,3 +45,10 @@ export const timeTableUpdation = (payload) => (dispatch) => {
         });
     });
 };
+
+export const resetTimeTableSubjectList = (payload) => (dispatch) =>{
+    dispatch({
+        type: actionType.RESET_SUBJECT_DATA,
+        payload: payload,
+    });
+}
