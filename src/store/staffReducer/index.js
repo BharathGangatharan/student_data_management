@@ -3,8 +3,9 @@ import actionType from "./actionType";
 const initialState = {
     classList: [],
     teacherDetail:{},
-    typeofExams: [{}],
-    classStudentList: [{}]
+    typeofExams: [],
+    classStudentList: [],
+    updatePassword: {}
 }
 
 const staffReducer = (state = initialState, action)=>{
@@ -24,6 +25,10 @@ const staffReducer = (state = initialState, action)=>{
         case actionType.GET_STUDENT_LIST:
             return {
                 ...state, classStudentList: action.payload
+            }
+        case actionType.UPDATE_PASSWORD:
+            return {
+                ...state, updatePassword: action.payload
             }
         default:
             return state;

@@ -60,3 +60,18 @@ export const getClassStudenList = (payload) => (dispatch) => {
         });
     });
 };
+
+export const updatePassword = (payload) => (dispatch) =>{
+    API_POST("UPDATENEWPASSWORD", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.UPDATE_PASSWORD,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.UPDATE_PASSWORD,
+            payload: err,
+        });
+    });
+}

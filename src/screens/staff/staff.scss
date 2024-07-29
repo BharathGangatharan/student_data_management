@@ -184,43 +184,101 @@
 
 //User profile
 #profileContainer {
-    background-color: m.$projWhite;
+    background-color: m.$projDarkBlue;
     padding: 130px 0 50px;
 
     .container {
-
         background-color: m.$projLightWhite;
         padding: 15px 0 30px;
 
         h2 {
             font-family: m.$fontBold;
             text-align: center;
-            padding-bottom: 15px;
+            padding-top: 20px;
+            padding-bottom: 30px;
+            color: m.$projDarkBlue;
         }
-    
-        h4 {
-            font-family: m.$fontMedium;
-            padding: 10px 30px 10px 0;
-            text-align: right;
-        }
-    
-        .information {
-            max-width: 600px;
-            margin: 0 auto;
-    
-            & > .row {
-                padding-bottom: 15px;
-    
-                .col {
-                    div {
-                        font-family: m.$fontRegular;
-                        font-size: 20px;
-                        padding: 10px 10px;
-                        color: m.$projBlack;
-                        background-color: m.$projWhite;
+
+        .profileContent {
+
+            display: flex;
+            justify-content: space-around;
+        
+            h4 {
+                font-family: m.$fontMedium;
+                padding: 10px 30px 10px 0;
+                text-align: right;
+                color: m.$projDarkBlue;
+            }
+        
+            .information {
+
+                border-right: 1px solid m.$projDarkBlue;
+                padding-right: 60px;
+
+                & > .row {
+                    padding-bottom: 15px;
+        
+                    .col {
+                        div {
+                            font-family: m.$fontRegular;
+                            font-size: 20px;
+                            padding: 10px 10px;
+                            color: m.$projDarkBlue;
+                            background-color: #d1cdcd;
+                        }
+                    }
+        
+                }
+            }
+
+            .updatePasswordWrapper {
+
+                .buttonContainer  {
+                    background-color: m.$projYellow;
+                    width: 180px;
+                    color: m.$projBlack;
+                    margin: 0 auto;
+
+                    &.disabled {
+                        pointer-events: none;
+                    }
+
+                    &.enabled {
+                        pointer-events: visible;
                     }
                 }
-    
+
+                .updatePasswordForm {
+                    width: 400px;
+                    margin: 50px auto 0 auto;
+                    padding: 40px 30px;
+                    background-color: m.$projDarkBlue;
+                    border-radius: 10px;
+
+                    & label {
+                        color: m.$projLightWhite;
+                        font-size: 18px;
+                        font-family: m.$fontMedium;
+                    }
+
+                    & .errorMsg {
+                        color: m.$projWhite;
+                        font-family: m.$fontBold;
+                        font-size: 14px;
+                        padding-bottom: 10px;
+                        display: block;
+                    }
+
+                    & span {
+                        &:first-child {
+                            &:first-child {
+                                padding-top: 10px;
+                            }
+                        }
+                    }
+
+                }
             }
         }
     }
