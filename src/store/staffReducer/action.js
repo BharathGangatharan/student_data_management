@@ -75,3 +75,40 @@ export const updatePassword = (payload) => (dispatch) =>{
         });
     });
 }
+
+export const getStudentListData = (payload) => (dispatch) =>{
+    API_POST("GETSTUDENTMARKSLIST", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.GET_STUDENT_MARKS_DATA,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.GET_STUDENT_MARKS_DATA,
+            payload: err,
+        });
+    });
+}
+
+export const updateStudentMarksList = (payload) => (dispatch) =>{
+    API_POST("EXAMMARKSUPDATE", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.UPDATE_STUDENT_MARKS,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.UPDATE_STUDENT_MARKS,
+            payload: err,
+        });
+    });
+}
+
+export const resetStudentListData = (payload) => (dispatch) =>{
+    dispatch({
+        type: actionType.RESET_STUDENT_MARKS_DATA,
+        payload: payload,
+    });
+}
