@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {dummyStdMarksTable,dummyStdMarksHeader} from '../../dummyData';
+import {dummyStdMarksHeader} from '../../dummyData';
 import {getTypesofExam,getClassStudenList,getStudentListData,updateStudentMarksList,resetStudentListData} from '../../store/staffReducer/action';
 import {useDispatch, useSelector} from 'react-redux';
 import {useLocation} from 'react-router-dom';
@@ -39,6 +39,7 @@ const StaffMarks = () => {
     //exam selection handler
     const examSelectHandler = (e)=>{
         setFileName("");
+        setDefaultStudentData([]);
         if(importFileStatus){
             setExam(e.target.value);
 
@@ -127,6 +128,7 @@ const StaffMarks = () => {
 
     const updateMarksHandler = ()=>{
         if(updatedMarksData.length > 0) {
+            setDefaultStudentData([]);
             dispatch(resetStudentListData([]));
             setUpdatedMarkStatus(false);
             dispatch(updateStudentMarksList(updatedMarksData));
@@ -187,8 +189,20 @@ const StaffMarks = () => {
 
         if(studentDataState?.studentMarksData.length > 0){
             setDefaultStudentData(studentDataState?.studentMarksData);
+        } else {
+            if(exam !== "" && updatedMarkStatus){
+                const dummyStudenDataList = studentDataState?.classStudentList.map((eachData,index)=>{
+                    return {
+                        ...eachData,
+                        MARKS:0
+                    }
+                });
+                setDefaultStudentData(dummyStudenDataList);
+            }
+            
         }
 
+        // eslint-disable-next-line
     },[studentDataState?.studentMarksData])
 
     useEffect(()=>{
@@ -219,6 +233,8 @@ const StaffMarks = () => {
             setUpdateButtonStatus(false);
         }
 
+        // eslint-disable-next-line
+
     },[studentDataState?.updateStudentMarks])
 
     useEffect(()=>{
@@ -232,6 +248,7 @@ const StaffMarks = () => {
     
             dispatch(getStudentListData(classData))
         }
+                // eslint-disable-next-line
     },[updatedMarkStatus])
 
 
@@ -271,7 +288,19 @@ const StaffMarks = () => {
                                     </div>
                                 </div>
                                 {
-                                    exam !=="" ?  studentDataState?.studentMarksData.length > 0 ? (<div className="marksTable">
+                                    exam !=="" ? defaultStudentData.length === 0 ? <div className='loader'>
+                                        <Loader label={"Loading..."} labelColor={"#fff"} horizontal={true}>
+                                            <ColorRing
+                                                visible={true}
+                                                height="50"
+                                                width="50"
+                                                ariaLabel="color-ring-loading"
+                                                wrapperStyle={{}}
+                                                wrapperClass="color-ring-wrapper"
+                                                colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                                            />
+                                        </Loader></div> 
+                                        : (<div className="marksTable">
                                         <Table bordered responsive ref={tableRef}>
                                             <thead>
                                                 <tr>
@@ -285,20 +314,22 @@ const StaffMarks = () => {
                                             <tbody>
                                                 {
 
-                                                    (
-                                                        defaultStudentData.map((itm,index)=>{
-                                                            return (
-                                                                <tr key={index}>
-                                                                    <td>{itm.STUDENT_NAME}</td>
-                                                                    {
-                                                                        editableFieldId === index? <td style={{width: '158px'}}><input style={{width: '100%'}} type='number' min={0} max={100} value={editMark} onChange={(e)=>{setEditMark(e.target.value)}} onBlur={(e)=>{editMarksHandler(e,index,itm)}} /></td> : 
-                                                                        <td onDoubleClick={(e)=>{doubleClickHandler(e,index)}}>{itm.MARKS}</td>
-                                                                    }
-                                                                    <td className={`${itm.MARKS < 40 ? 'fail':'pass'}`}><span>{itm.MARKS < 40 ? 'FAIL':'PASS'}</span></td>
-                                                                </tr>
-                                                            )
-                                                        })
-                                                    )
+                                                    defaultStudentData.map((itm,index)=>{
+                                                        return (
+                                                            <tr key={index}>
+                                                                <td>{itm.STUDENT_NAME}</td>
+                                                                {
+                                                                    editableFieldId === index? <td style={{width: '158px'}}><input style={{width: '100%'}} type='number' min={0} max={100} value={editMark} onChange={(e)=>{setEditMark(e.target.value)}} onBlur={(e)=>{editMarksHandler(e,index,itm)}} /></td> : 
+                                                                    <td onDoubleClick={(e)=>{doubleClickHandler(e,index)}}>{itm.MARKS}</td>
+                                                                }
+                                                                {
+                                                                    studentDataState?.studentMarksData.length > 0 ? <td className={`${itm.MARKS < 40 ? 'fail':'pass'}`}><span>{itm.MARKS < 40 ? 'FAIL':'PASS'}</span></td> : <td></td>
+                                                                }
+
+                                                            </tr>
+                                                        )
+                                                    })
+                                                    
                                                 }
                                             </tbody>
                                         </Table>
@@ -312,7 +343,6 @@ const StaffMarks = () => {
                                     </div>
                                     
                                     )
-                                    :<div className="infoMsg2">Loading...</div>
                                     :<div className="infoMsg">*Please select the exam type to see the student marks list.</div>
                                                                             
                                 }

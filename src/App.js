@@ -1,46 +1,63 @@
-import {Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import {
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Login from "./screens/login/Login";
 import Student from "./screens/student/Student";
 import Staff from "./screens/staff/StaffMain";
-import StaffMarkAndAttendance from './screens/staff/StaffMarkAndAttendance';
-import StaffMarks from './screens/staff/StaffMarks';
-import StaffProfile from './screens/staff/StaffProfile';
-import AdminTimeTable from './screens/adminTimeTable/AdminTimeTable';
-import './styles/main.scss';
-import PrivateRoute from './screens/PrivateRoute';
-import Layout from './screens/Layout';
+import StaffMarkAndAttendance from "./screens/staff/StaffMarkAndAttendance";
+import StaffMarks from "./screens/staff/StaffMarks";
+import StaffProfile from "./screens/staff/StaffProfile";
+import AdminTimeTable from "./screens/adminTimeTable/AdminTimeTable";
+import "./styles/main.scss";
+import Layout from "./screens/Layout";
+import AutoLogout from './screens/AutoLogout';
+import {useSelector} from 'react-redux';
 
 function App() {
-    const checkLoginState = localStorage.getItem('isLoggedIn');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [role, setRole] = useState("");
+  const loginState = useSelector((state)=>state?.loginReducer?.login);
+
+  useEffect(() => {
+    const getLoginState = localStorage.getItem("isLoggedIn");
+    const getUserRole = localStorage.getItem("role");
+    if(getLoginState){
+        setIsLoggedIn(true);
+        setRole("staff");
+    }
+
+  }, [loginState]);
 
   return (
-      <>
-        {
-
-            <Routes>
-                <Route path="/" exact element={<Layout />} >
-            
-                     <Route path="/login" element={<Login/>}/>
-                    
-                    <Route element={<PrivateRoute roles={["student"]} />}>
-                        <Route path="/student" element={<Student/>}/>
-                    </Route>
-
-                    <Route element={<PrivateRoute roles={["staff"]} />}>
-                        <Route path="/staff" element={<Staff/> }/>
-                        <Route path="/staff/marks-attendance?/:id" element={<StaffMarkAndAttendance/>}/>
-                        <Route path="/staff/marks/:id" element={<StaffMarks/>}/>
-                        <Route path="/profile" element={<StaffProfile />}/>
-                    </Route>
-
-                    <Route element={<PrivateRoute roles={["admin"]}/>} >
-                        <Route path="/admin" element={<AdminTimeTable />}/>
-                    </Route>
-            
-                </Route>
-            </Routes>
-        }
-      </>
+    <AutoLogout>
+        <Routes>
+        <Route path="/login" element={<Login />} />
+        {isLoggedIn ? (
+            <Route path="/" element={<Layout />}>
+            {role === "student" && <Route path="student" element={<Student />} />}
+            {role === "staff" && (
+                <>
+                <Route path="staff" element={<Staff />} />
+                <Route
+                    path="staff/marks-attendance/:id"
+                    element={<StaffMarkAndAttendance />}
+                />
+                <Route path="staff/marks/:id" element={<StaffMarks />} />
+                <Route path="profile" element={<StaffProfile />} />
+                </>
+            )}
+            {role === "admin" && (
+                <Route path="admin" element={<AdminTimeTable />} />
+            )}
+            </Route>
+        ) : (
+            <Route path="*" element={<Navigate to="/login" replace />} />
+        )}
+        </Routes>
+    </AutoLogout>
   );
 }
 

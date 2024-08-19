@@ -391,6 +391,36 @@
                     }
 
                 }
+
+                & .successWrapper {
+                    position: relative;
+                    margin: 30px auto 0 auto;
+                    width: 290px;
+                    padding: 8px;
+                    background-color:#487640;
+                    border-radius: 5px;
+
+                    & .pwdSuccess {
+                        color: m.$projWhite;
+                        font-family: "Roboto Bold";
+                        font-size: 14px;
+                        display: block;
+                        text-align: center;
+                        padding-top: 0 !important;
+                    }
+
+                    & .successIconWrapper {
+                        position: absolute;
+                        top: 2px;
+                        right: 17px;
+
+                        & svg {
+                            fill: m.$projWhite;
+                            width: 25px;
+                            height: 25px;
+                        }
+                    }
+                }
             }
         }
     }
