@@ -106,9 +106,31 @@ export const updateStudentMarksList = (payload) => (dispatch) =>{
     });
 }
 
+export const getAverageMarks = (payload) => (dispatch) =>{
+    API_POST("GETSTUDENTAVGMARKS", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.GET_AVG_MARKS,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.GET_AVG_MARKS,
+            payload: err,
+        });
+    });
+}
+
 export const resetStudentListData = (payload) => (dispatch) =>{
     dispatch({
         type: actionType.RESET_STUDENT_MARKS_DATA,
+        payload: payload,
+    });
+}
+
+export const resetData = (payload) => (dispatch) =>{
+    dispatch({
+        type: actionType.RESET_DATA,
         payload: payload,
     });
 }

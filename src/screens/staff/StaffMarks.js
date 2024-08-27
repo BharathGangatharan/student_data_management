@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react';
 import {dummyStdMarksHeader} from '../../dummyData';
-import {getTypesofExam,getClassStudenList,getStudentListData,updateStudentMarksList,resetStudentListData} from '../../store/staffReducer/action';
+import {getTypesofExam,getClassStudenList,getStudentListData,updateStudentMarksList,resetStudentListData,getAverageMarks,resetData} from '../../store/staffReducer/action';
 import {useDispatch, useSelector} from 'react-redux';
 import {useLocation} from 'react-router-dom';
 import Button from '../../components/button/Button';
@@ -38,6 +38,13 @@ const StaffMarks = () => {
 
     //exam selection handler
     const examSelectHandler = (e)=>{
+        const avgMarksPaload = {
+            "CLASSID": location?.state?.data?.CLASSID,
+            "SUBJECTID": location?.state?.data?.SUBJECTID,
+            "TEACHERID": loginState?.TEACHERID,
+            "TYPEOFEXAM": e.target.value,
+        }
+        
         setFileName("");
         setDefaultStudentData([]);
         if(importFileStatus){
@@ -45,13 +52,14 @@ const StaffMarks = () => {
 
             const classData = {
                 "CLASSID": location?.state?.data?.CLASSID,
-                "SUBJECTID": 'SB002',
+                "SUBJECTID": location?.state?.data?.SUBJECTID,
                 "TEACHERID": loginState?.TEACHERID,
                 "TYPEOFEXAM": e.target.value
             }
     
             dispatch(getStudentListData(classData))
         }
+        dispatch(getAverageMarks(avgMarksPaload));
     }
 
     const importFileHandler = async (e)=>{
@@ -73,7 +81,7 @@ const StaffMarks = () => {
                 "STUDENTID": "",
                 "MARKS": "",
                 "TEACHERID": loginState?.TEACHERID,
-                "SUBJECTID": "SB002",
+                "SUBJECTID": location?.state?.data?.SUBJECTID,
                 "TYPEOFEXAM": exam,
                 "CLASSID": location?.state?.data?.CLASSID,
             }
@@ -111,7 +119,7 @@ const StaffMarks = () => {
             "STUDENTID": studentDetail.STUDENTID,
             "MARKS": e.target.value,
             "TEACHERID": loginState?.TEACHERID,
-            "SUBJECTID": "SB002",
+            "SUBJECTID": location?.state?.data?.SUBJECTID,
             "TYPEOFEXAM": exam,
             "CLASSID": location?.state?.data?.CLASSID,
         }
@@ -166,7 +174,6 @@ const StaffMarks = () => {
         XLSX.writeFile(wb, `${downLoadedFileName}.xlsx`);
     }
 
-
     useEffect(()=>{
 
         const getTypesofExamData = {
@@ -190,7 +197,8 @@ const StaffMarks = () => {
         if(studentDataState?.studentMarksData.length > 0){
             setDefaultStudentData(studentDataState?.studentMarksData);
         } else {
-            if(exam !== "" && updatedMarkStatus){
+
+            if(exam !== "" && studentDataState?.studentMarksData.length===0){
                 const dummyStudenDataList = studentDataState?.classStudentList.map((eachData,index)=>{
                     return {
                         ...eachData,
@@ -227,10 +235,20 @@ const StaffMarks = () => {
     },[updatedMarksData])
 
     useEffect(()=>{
+        const avgMarksPaload = {
+            "CLASSID": location?.state?.data?.CLASSID,
+            "SUBJECTID": location?.state?.data?.SUBJECTID,
+            "TEACHERID": loginState?.TEACHERID,
+            "TYPEOFEXAM": exam,
+        }
+
         if(studentDataState?.updateStudentMarks?.RESULT === "MARKS ARE UPDATED SUCESSFULLY"){
+            setUpdatedMarksData([]);
             setUpdatedMarkStatus(true);
             setImportFileStatus(true);
             setUpdateButtonStatus(false);
+            dispatch(getAverageMarks(avgMarksPaload));
+            dispatch(resetData({}));
         }
 
         // eslint-disable-next-line
@@ -241,7 +259,7 @@ const StaffMarks = () => {
         if(updatedMarkStatus){
             const classData = {
                 "CLASSID": location?.state?.data?.CLASSID,
-                "SUBJECTID": 'SB002',
+                "SUBJECTID": location?.state?.data?.SUBJECTID,
                 "TEACHERID": loginState?.TEACHERID,
                 "TYPEOFEXAM": exam
             }
@@ -333,6 +351,13 @@ const StaffMarks = () => {
                                                 }
                                             </tbody>
                                         </Table>
+                                        {
+                                            exam !=="" && <div className="avgMarksContainer">
+                                                <div>No.of students: <span>{studentDataState?.classStudentList.length}</span></div>
+                                                <div>No.of students Failed: <span>{studentDataState?.averageMarks?.Numberofstudentsfailed}</span></div>
+                                                <div>Average Marks: <span>{studentDataState?.averageMarks?.AverageMarks}</span></div>
+                                            </div>
+                                        }
                                         {
                                             updateButtonStatus && (
                                                 <div className='updateMarkWrapper'>

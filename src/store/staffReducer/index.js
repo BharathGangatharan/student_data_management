@@ -7,7 +7,8 @@ const initialState = {
     classStudentList: [],
     updatePassword: {},
     studentMarksData: [],
-    updateStudentMarks: {}
+    updateStudentMarks: {},
+    averageMarks: {}
 }
 
 const staffReducer = (state = initialState, action)=>{
@@ -40,9 +41,17 @@ const staffReducer = (state = initialState, action)=>{
             return {
                 ...state, updateStudentMarks: action.payload
             }
+        case actionType.GET_AVG_MARKS:
+            return {
+                ...state, averageMarks: action.payload
+            }
         case actionType.RESET_STUDENT_MARKS_DATA:
             return {
                 ...state, studentMarksData: []
+            }
+        case actionType.RESET_DATA:
+            return {
+                ...state, updateStudentMarks: action.payload
             }
         default:
             return state;

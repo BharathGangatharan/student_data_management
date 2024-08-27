@@ -218,6 +218,22 @@
                 margin-top: 30px;
             }
 
+            & .avgMarksContainer {
+                padding-top: 20px;
+                
+                & > div {
+                    font-family: m.$fontRegular;
+                    font-size: 16px;
+                    color: m.$projWhite;
+
+                    & span {
+                        font-family: m.$fontBold;
+                        color: m.$projYellow;
+                        font-size: 18px;
+                    }
+                }
+            }
+
             & .updateMarkWrapper {
                 padding-top: 40px;
 
