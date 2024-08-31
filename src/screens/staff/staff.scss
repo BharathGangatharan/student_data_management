@@ -2,65 +2,100 @@
 
 .staffContainer {
     background-color: m.$projBlue;
-    padding: 80px 0 250px;
 }
 
 #staffHomeId {
+    min-height: 100vh;
+    padding-top: 130px;
     & .staffHome {
-        & .classContainer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 80px 0;
-
-            & .itemBlock {
-                width: 300px;
-                height: 300px;
-                background-color: m.$projYellow;
+        & .classContainer, & .myClassContainer {
+            & > div {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 25px;
-                font-family: m.$fontMedium;
-                margin-right: 30px;
-                margin-top: 20px;
-                cursor: pointer;
-                border-radius: 10px;
-                position: relative;
-
-                & .itemContent {
+                flex-wrap: wrap;
+                padding: 0 0 20px;
+    
+                & .itemBlock {
+                    width: 300px;
+                    height: 150px;
+                    background-color: m.$projYellow;
                     display: flex;
-                    flex-direction: column;
-                    align-items: center;
                     justify-content: center;
-                }
-
-                & .hoverButton {
-                    display: none;
-                }
-
-                &:hover{
-                    border: 5px solid m.$projWhite;
-
-                    & .hoverButton {
+                    align-items: flex-start;
+                    font-size: 20px;
+                    font-family: m.$fontMedium;
+                    margin-right: 30px;
+                    margin-top: 20px;
+                    cursor: pointer;
+                    border-radius: 10px;
+                    position: relative;
+                    padding-top: 10px;
+    
+                    & .itemContent {
                         display: flex;
-                        position: absolute;
-                        bottom: 20px;
-                        justify-content: space-between;
-
-                        & .button-d {
-                            background-color: m.$projBlue;
-                            color: m.$projWhite;
-                            width: 120px;
-
-                            &:first-child {
-                                margin-right: 15px;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                    }
+    
+                    & .hoverButton {
+                        display: none;
+                    }
+    
+                    &:hover{
+                        // border: 5px solid m.$projWhite;
+    
+                        & .hoverButton {
+                            display: flex;
+                            position: absolute;
+                            bottom: 20px;
+                            justify-content: space-between;
+    
+                            & .button-d {
+                                background-color: m.$projBlue;
+                                color: m.$projWhite;
+                                font-size: 14px;
+    
+                                &:first-child {
+                                    margin-right: 15px;
+                                }
                             }
                         }
                     }
                 }
             }
+        }
+
+        & .myClassContainer {
+            padding: 0px 0 30px;
+
+                & .itemBlock {
+                    background-color: m.$projLightWhite;
+    
+                    
+                    &:hover{
+                        border: 5px solid m.$projWhite;
+    
+                        & .hoverButton {
+                            flex-wrap: wrap;
+                            justify-content: space-evenly;
+    
+                            & .button-d {
+                                width: 120px;
+                                font-size: 14px;
+    
+                                &:first-child {
+                                    margin-right: 0;
+                                }
+                                &:last-child {
+                                    margin-top: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+
         }
     }
 }
@@ -105,17 +140,19 @@
 
 #staffMarks {
     background-color: m.$projYellow;
-    padding: 170px 0 250px;
+    // padding: 170px 0 250px;
+    min-height: 100vh;
+    padding: 130px 0;
 
     & .loader {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-top: 160px;
     }
 
     & .container {
         background-color: m.$projBlue;
-        padding-bottom: 50px;
 
         & > .row {
             padding-top: 50px;

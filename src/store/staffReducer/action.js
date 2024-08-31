@@ -134,3 +134,18 @@ export const resetData = (payload) => (dispatch) =>{
         payload: payload,
     });
 }
+
+export const getMyClass = (payload) => (dispatch) =>{
+    API_POST("GETMYCLASS", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.GET_MY_CLASS,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.GET_MY_CLASS,
+            payload: err,
+        });
+    });
+}
