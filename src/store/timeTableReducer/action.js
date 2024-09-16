@@ -46,6 +46,21 @@ export const timeTableUpdation = (payload) => (dispatch) => {
     });
 };
 
+export const getStaffTimeTable = (payload) => (dispatch) => {    
+    API_POST("GetTeacherTimeTable", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.GET_STAFF_TIME_TABLE,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.GET_STAFF_TIME_TABLE,
+            payload: err,
+        });
+    });
+};
+
 export const resetTimeTableSubjectList = (payload) => (dispatch) =>{
     dispatch({
         type: actionType.RESET_SUBJECT_DATA,

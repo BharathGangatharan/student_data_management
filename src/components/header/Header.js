@@ -60,7 +60,7 @@ const Header = () => {
                         {modalShow && 
                             (
                                 <ModalPopup modalTitle={"Time Table"} modalShow={modalShow} modalHide={modalHideHandler}>
-                                    <TimeTable tcoloumn={9}/>
+                                    <TimeTable tcoloumn={8}/>
                                 </ModalPopup>
                             )
                         }

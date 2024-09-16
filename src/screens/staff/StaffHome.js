@@ -4,11 +4,11 @@ import Container from 'react-bootstrap/Container';
 import { useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getClassList,getTeacherDetails,getMyClass} from '../../store/staffReducer/action';
+import {getStaffTimeTable} from '../../store/timeTableReducer/action';
 import Loader from '../../components/loading/Loader';
 import { Bars } from 'react-loader-spinner';
 
 const StaffHome = () => {
-    // const classList = ['ECE-A','BME-B','CSE-A'];
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -51,8 +51,11 @@ const StaffHome = () => {
 
         dispatch(getTeacherDetails(sendTeacherId));
 
-        dispatch(getMyClass(sendTeacherId))
+        dispatch(getMyClass(sendTeacherId));
+
+        dispatch(getStaffTimeTable(sendTeacherId));
         
+        // eslint-disable-next-line
     },[])
     
     return (
@@ -120,7 +123,7 @@ const StaffHome = () => {
                 }}
               >
                 <div className="itemContent">
-                  <div>My Class</div>
+                  <div>MY CLASS</div>
                   <div>{getClassData?.getMyClass?.CLASSDESCRIPTION}</div>
                 </div>
                 <div className="hoverButton">

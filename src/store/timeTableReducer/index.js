@@ -3,7 +3,8 @@ import actionType from "./actionType";
 const initialState = {
     tableAllClassList: [],
     tableSubjectList: [],
-    tableUpdate: {}
+    tableUpdate: {},
+    staffTimeTable: []
 }
 
 const timeTableReducer = (state = initialState, action)=>{
@@ -19,6 +20,10 @@ const timeTableReducer = (state = initialState, action)=>{
         case actionType.TIME_TABLE_UPDATE:
             return {
                 ...state, tableUpdate: action.payload
+            }
+        case actionType.GET_STAFF_TIME_TABLE:
+            return {
+                ...state, staffTimeTable: action.payload
             }
         case actionType.RESET_SUBJECT_DATA:
             return {

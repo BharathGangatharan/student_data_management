@@ -25,9 +25,20 @@
                 background-color: m.$projBlue;
                 color: #fff;
                 font-size: 16px;
+
+                & > div {
+                    text-align: center;
+                    
+                    & span {
+                        &:last-child {
+                            font-size: 12px;
+                        }
+                    }
+                }
             }
 
             & tr {
+                height: 65px;
                 & > td:first-child {
                     background-color: m.$projRed;
                     color: #fff;

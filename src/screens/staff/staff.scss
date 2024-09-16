@@ -71,25 +71,22 @@
             padding: 0px 0 30px;
 
                 & .itemBlock {
-                    background-color: m.$projLightWhite;
+                    background-color: m.$projLightWhite !important;
+                    width: 430px !important;
     
                     
                     &:hover{
-                        border: 5px solid m.$projWhite;
-    
+
                         & .hoverButton {
                             flex-wrap: wrap;
-                            justify-content: space-evenly;
+                            align-items: center;
     
                             & .button-d {
                                 width: 120px;
                                 font-size: 14px;
-    
-                                &:first-child {
-                                    margin-right: 0;
-                                }
-                                &:last-child {
-                                    margin-top: 10px;
+                                
+                                &:nth-child(2) {
+                                    margin-right: 15px;
                                 }
                             }
                         }

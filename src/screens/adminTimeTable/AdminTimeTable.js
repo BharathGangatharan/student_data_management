@@ -3,7 +3,7 @@ import './adminTimeTable.scss';
 import Table from 'react-bootstrap/Table';
 import {useDispatch, useSelector} from 'react-redux';
 import Form from 'react-bootstrap/Form';
-import {getTimeTableClassList,getTimeTableSubjectList,resetTimeTableSubjectList} from '../../store/timeTableReducer/action';
+import {getTimeTableClassList,getTimeTableSubjectList,resetTimeTableSubjectList,timeTableUpdation} from '../../store/timeTableReducer/action';
 import Button from '../../components/button/Button';
 import { ColorRing } from 'react-loader-spinner';
 import Loader from '../../components/loading/Loader';
@@ -12,7 +12,6 @@ import Loader from '../../components/loading/Loader';
 const AdminTimeTable = () => {
 
     const [classId,setClassId] = useState("");
-    // const [subjectData,setSubjectData] = useState("");
     const [selectedData, setSelectedData] = useState([]);
     const [highlightedCell, setHighlightedCell] = useState([{ row: null, column: null }]);
 
@@ -21,16 +20,6 @@ const AdminTimeTable = () => {
     const timeTableData = useSelector((state)=>state?.timeTableReducer);
     const DAYS = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
-    const subjectList = ()=>{
-
-        // let storeSubjectData=[];
-        // timeTableData?.tableSubjectList?.map((item,key)=>{
-        // storeSubjectData = [...storeSubjectData,{"subjectId":item.SubjectId,"teacherId":item.TeacherId,"subjecDesc":item.Description}];
-        //     return storeSubjectData
-        // });
-
-        // setSubjectData(storeSubjectData);
-    }
 
     const selectClassHandler = (e)=>{
         setClassId(e.target.value);
@@ -61,7 +50,9 @@ const AdminTimeTable = () => {
     }
 
     const updateTableHandler = ()=>{
-        console.log(selectedData)
+        if(selectedData.length > 0) {
+          dispatch(timeTableUpdation(selectedData));
+        }
     }
 
 
@@ -85,11 +76,11 @@ const AdminTimeTable = () => {
     },[classId]);
 
     useEffect(()=>{
-        if(timeTableData?.tableSubjectList.length > 0) {
-            subjectList();
+        if(timeTableData?.tableUpdate?.Result?.toLowerCase() === "success") {
+          setSelectedData([]);
         }
         // eslint-disable-next-line
-    },[timeTableData?.tableSubjectList]);
+    },[timeTableData?.tableUpdate]);
 
 
     return (
@@ -153,7 +144,7 @@ const AdminTimeTable = () => {
                                 className={((highlightedCell[0].row !==null) && (highlightedCell[rowIndex].row === rowIndex && highlightedCell[colIndex].column === colIndex)) ? 'highlighted' : ''}
                               >
                                 <option value={"select"}>select</option>
-                                {timeTableData?.tableSubjectList?.map((classDesc, index) => {
+                                {timeTableData?.tableSubjectList?.filter((data)=> (data.Day === DAYS[rowIndex] && data.Period === colIndex + 1)).map((classDesc, index) => {
                                   return (
                                     <option
                                       key={index}
@@ -174,12 +165,16 @@ const AdminTimeTable = () => {
                 </Table>
               </div>
               <div className="updateButtonWrapper">
-                <Button
-                  label={"Update Table"}
-                  style={{ backgroundColor: "#fff" }}
-                  onClick={updateTableHandler}
-                  className={`${selectedData.length === 0 && `disbaled`}`}
-                />
+                {
+                  selectedData.length > 0 && (
+                    <Button
+                      label={"Update Table"}
+                      style={{ backgroundColor: "#fff" }}
+                      onClick={updateTableHandler}
+                      className={`${selectedData.length === 0 && `disbaled`}`}
+                    />
+                  )
+                }
               </div>
             </>
           ) : (
