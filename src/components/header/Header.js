@@ -16,6 +16,7 @@ const Header = () => {
     const checkLoginState = localStorage.getItem("isLoggedIn");
 
     const getTeacherData = useSelector((state)=>state?.staffReducer?.teacherDetail);
+    const loginState = useSelector((state)=>state?.loginReducer?.login);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -53,7 +54,10 @@ const Header = () => {
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <div onClick={viewProfileHandler}>View Profile</div>
-                                <div onClick={()=>{setModalShow(true)}}>Time Table</div>
+                                {
+                                    loginState?.ISADMIN === 0 ? <div onClick={()=>{setModalShow(true)}}>Time Table</div>:""
+                                }
+                                
                                 <div onClick={logoutHandler}>Logout</div>
                             </Dropdown.Menu>
                         </Dropdown>

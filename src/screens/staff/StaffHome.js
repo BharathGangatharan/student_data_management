@@ -2,18 +2,16 @@ import React,{useEffect} from 'react';
 import Button from '../../components/button/Button';
 import Container from 'react-bootstrap/Container';
 import { useNavigate } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {getClassList,getTeacherDetails,getMyClass} from '../../store/staffReducer/action';
-import {getStaffTimeTable} from '../../store/timeTableReducer/action';
+import {useSelector} from 'react-redux';
 import Loader from '../../components/loading/Loader';
 import { Bars } from 'react-loader-spinner';
+import {useSendTeacherId} from '../../utils/payload/useStaffPayload';
 
 const StaffHome = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
+    const sendTeacherId = useSendTeacherId();
     const getClassData = useSelector((state)=>state?.staffReducer);
-    const loginState = useSelector((state)=>state?.loginReducer?.login);
 
     const navigateNext = (e,item)=> {
         if(!e.target.classList.contains('button-d')) {
@@ -43,17 +41,9 @@ const StaffHome = () => {
 
     useEffect(()=>{
 
-        const sendTeacherId = {
-            "TEACHERID":loginState?.TEACHERID
-        }
-
-        dispatch(getClassList(sendTeacherId));
-
-        dispatch(getTeacherDetails(sendTeacherId));
-
-        dispatch(getMyClass(sendTeacherId));
-
-        dispatch(getStaffTimeTable(sendTeacherId));
+      if(getClassData?.classList.length === 0) {
+        sendTeacherId();
+      }
         
         // eslint-disable-next-line
     },[])

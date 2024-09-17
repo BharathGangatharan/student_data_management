@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table';
 import {useDispatch, useSelector} from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import {getTimeTableClassList,getTimeTableSubjectList,resetTimeTableSubjectList,timeTableUpdation} from '../../store/timeTableReducer/action';
+import {getTeacherDetails} from '../../store/staffReducer/action';
 import Button from '../../components/button/Button';
 import { ColorRing } from 'react-loader-spinner';
 import Loader from '../../components/loading/Loader';
@@ -16,7 +17,8 @@ const AdminTimeTable = () => {
     const [highlightedCell, setHighlightedCell] = useState([{ row: null, column: null }]);
 
     const dispatch = useDispatch();
-
+    
+    const loginState = useSelector((state)=>state?.loginReducer?.login);
     const timeTableData = useSelector((state)=>state?.timeTableReducer);
     const DAYS = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
@@ -57,8 +59,14 @@ const AdminTimeTable = () => {
 
 
     useEffect(()=>{
-        dispatch(getTimeTableClassList());
-        // eslint-disable-next-line
+
+      const sendTeacherId = {
+        "TEACHERID": loginState?.TEACHERID
+      };
+
+      dispatch(getTeacherDetails(sendTeacherId));
+      dispatch(getTimeTableClassList());
+      // eslint-disable-next-line
     },[]);
 
     useEffect(()=>{
