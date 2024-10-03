@@ -28,3 +28,24 @@ export const data = [
         }
     }
 ];
+
+
+export const summarySubject = [
+    {
+        "SB001": "Science"
+    },
+    {
+        "SB002": "Maths"
+    },
+    {
+        "SB003": "Social"
+    },
+    {
+        "SB004": "English"
+    },
+    {
+        "SB005": "Tamil"
+    }
+];
+
+export const summaryRowHeader = ["Sub Average","Students Passed","Students Failed","Pass %"];

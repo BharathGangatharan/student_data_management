@@ -9,7 +9,13 @@ const initialState = {
     studentMarksData: [],
     updateStudentMarks: {},
     averageMarks: {},
-    getMyClass: {}
+    getMyClass: {},
+    getMyClassMarks: [],
+    getMyClassSubjects: [],
+    displaySummary: [],
+    approvedMarks: {},
+    getApprovedStudentsList: [],
+    getClassSubAvg: []
 }
 
 const staffReducer = (state = initialState, action)=>{
@@ -46,6 +52,30 @@ const staffReducer = (state = initialState, action)=>{
             return {
                 ...state, averageMarks: action.payload
             }
+        case actionType.GET_MY_CLASS_MARKS:
+            return {
+                ...state, getMyClassMarks: action.payload
+            }
+        case actionType.GET_MY_CLASS_SUBJECTS:
+            return {
+                ...state, getMyClassSubjects: action.payload
+            }
+        case actionType.DISPLAY_STUDENT_SUMMARY:
+            return {
+                ...state, displaySummary: action.payload
+            }
+        case actionType.APPROVE_MARKS:
+            return {
+                ...state, approvedMarks: action.payload
+            }
+        case actionType.GET_APPROVED_STUDENTS_MARKS:
+            return {
+                ...state, getApprovedStudentsList: action.payload
+            }
+        case actionType.GET_CLASS_SUB_AVG:
+            return {
+                ...state, getClassSubAvg: action.payload
+            }
         case actionType.RESET_STUDENT_MARKS_DATA:
             return {
                 ...state, studentMarksData: []
@@ -57,6 +87,10 @@ const staffReducer = (state = initialState, action)=>{
         case actionType.GET_MY_CLASS:
             return {
                 ...state, getMyClass: action.payload
+            }
+        case actionType.RESET_APPROVE_MARKS:
+            return {
+                ...state, approvedMarks: action.payload
             }
         default:
             return state;

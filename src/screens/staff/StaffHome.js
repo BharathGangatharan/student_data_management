@@ -14,7 +14,8 @@ const StaffHome = () => {
     const getClassData = useSelector((state)=>state?.staffReducer);
 
     const navigateNext = (e,item)=> {
-        if(!e.target.classList.contains('button-d')) {
+      e.preventDefault();
+        if(!e.target.classList.contains('button-d') && !e.target.classList.contains('approval')) {
             navigate(`marks-attendance?${item.CLASSDESCRIPTION.replace(" ","")}`,{
                 state:{
                     data:item
@@ -24,7 +25,8 @@ const StaffHome = () => {
     }
 
     const navigateMark = (e,item)=>{
-        if(e.target.classList.contains('button-d')) {
+        e.preventDefault();
+        if(e.target.classList.contains('button-d') && !e.target.classList.contains('approval')) {
             navigate(`marks/${item.CLASSDESCRIPTION.replace(" ","")}`,{
                 state:{
                     data:item
@@ -34,9 +36,21 @@ const StaffHome = () => {
     }
 
     const navigateAttendance = (e,item)=>{
-        if(e.target.classList.contains('button-d')) {
+      e.preventDefault();
+        if(e.target.classList.contains('button-d') && !e.target.classList.contains('approval')) {
             navigate(`attendance/${item.CLASSDESCRIPTION.replace(" ","")}`);
         }
+    }
+
+    const navigateApproval = (e,item) => {
+      e.preventDefault();
+      if(e.target.classList.contains('approval')) {
+        navigate(`/approval`,{
+          state:{
+            data:item
+        }
+        });
+      }
     }
 
     useEffect(()=>{
@@ -120,8 +134,9 @@ const StaffHome = () => {
                   <Button
                     label={"Marks Approval"}
                     onClick={(e) => {
-                      navigateMark(e, getClassData?.getMyClass);
+                      navigateApproval(e, getClassData?.getMyClass);
                     }}
+                    className={"approval"}
                   />
                   <Button
                     label={"Attendance"}

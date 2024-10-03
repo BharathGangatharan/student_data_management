@@ -10,10 +10,12 @@ import Staff from "./screens/staff/StaffMain";
 import StaffMarkAndAttendance from "./screens/staff/StaffMarkAndAttendance";
 import StaffMarks from "./screens/staff/StaffMarks";
 import StaffProfile from "./screens/staff/StaffProfile";
+import MarksApproval from "./screens/staff/MarksApproval";
 import AdminTimeTable from "./screens/adminTimeTable/AdminTimeTable";
 import "./styles/main.scss";
 import Layout from "./screens/Layout";
 import AutoLogout from './screens/AutoLogout';
+import ScrollTop from './components/scrollTop/ScrollTop';
 import {useSelector} from 'react-redux';
 
 function App() {
@@ -23,39 +25,43 @@ function App() {
 
   useEffect(() => {
     const getLoginState = localStorage.getItem("isLoggedIn");
-    const getUserRole = localStorage.getItem("role");
-    if(getLoginState){
-        setIsLoggedIn(true);
-        setRole("staff");
+    const getUserRole = loginState?.ISADMIN;
+    if(Boolean(getLoginState)){
+      setIsLoggedIn(true);
+      getUserRole === 1 ? setRole("admin"): setRole("staff")
     }
-
   }, [loginState]);
 
   return (
     <AutoLogout>
+        <ScrollTop />
         <Routes>
-        <Route path="/login" element={<Login />} />
-        {isLoggedIn ? (
-            <Route path="/" element={<Layout />}>
-            {role === "student" && <Route path="student" element={<Student />} />}
-            {role === "staff" && (
-                <>
-                <Route path="staff" element={<Staff />} />
-                <Route
-                    path="staff/marks-attendance/:id"
-                    element={<StaffMarkAndAttendance />}
-                />
-                <Route path="staff/marks/:id" element={<StaffMarks />} />
-                <Route path="profile" element={<StaffProfile />} />
-                </>
-            )}
-            {role === "admin" && (
-                <Route path="admin" element={<AdminTimeTable />} />
-            )}
-            </Route>
-        ) : (
-            <Route path="*" element={<Navigate to="/login" replace />} />
-        )}
+          <Route path="/login" element={<Login />} />
+          {isLoggedIn ? (
+              <Route path="/" element={<Layout />}>
+              {role === "student" && <Route path="student" element={<Student />} />}
+              {role === "staff" && (
+                  <>
+                    <Route path="staff" element={<Staff />} />
+                    <Route
+                        path="staff/marks-attendance/:id"
+                        element={<StaffMarkAndAttendance />}
+                    />
+                    <Route path="staff/marks/:id" element={<StaffMarks />} />
+                    <Route path="profile" element={<StaffProfile />} />
+                    <Route path="approval" element={<MarksApproval />} />
+                  </>
+              )}
+              {role === "admin" && (
+                  <>
+                    <Route path="admin" element={<AdminTimeTable />} />
+                    <Route path="profile" element={<StaffProfile />} />
+                  </>
+              )}
+              </Route>
+          ) : (
+              <Route path="*" element={<Navigate to="/login" replace />} />
+          )}
         </Routes>
     </AutoLogout>
   );

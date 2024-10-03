@@ -6,7 +6,7 @@
 
 #staffHomeId {
     min-height: 100vh;
-    padding-top: 130px;
+    padding-top: 30px;
     & .staffHome {
         & .classContainer, & .myClassContainer {
             & > div {
@@ -137,9 +137,8 @@
 
 #staffMarks {
     background-color: m.$projYellow;
-    // padding: 170px 0 250px;
     min-height: 100vh;
-    padding: 130px 0;
+    padding: 30px 0;
 
     & .loader {
         display: flex;
@@ -347,7 +346,7 @@
 //User profile
 #profileContainer {
     background-color: m.$projDarkBlue;
-    padding: 130px 0 50px;
+    padding: 30px 0 50px;
 
     .container {
         background-color: m.$projLightWhite;
@@ -475,4 +474,233 @@
         }
     }
 
+}
+
+//marks approval
+#staffMarksApprovalId {
+    background-color: m.$projBlue;
+    padding: 30px 0 50px;
+    min-height: 100vh;
+    .container {
+        & .approvalWrapper {
+            h2 {
+                text-align: center;
+                font-family: m.$fontMedium;
+                color: m.$projWhite;
+                font-size: 20px;
+            }
+
+            & .tableTopHeader {
+                h4 {
+                    font-family: m.$fontMedium;
+                    color: m.$projYellow;
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                }
+
+                .examType {
+                    width: 15%;
+                    
+                    & select {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            & .summaryTable {
+                padding-top: 40px;
+
+                & .infoMsg{
+                    color: m.$projBlack;
+                    font-family: m.$fontBold;
+                    font-size: 16px;
+                    background-color: m.$projYellow;
+                    padding: 20px;
+                    text-align: center;
+                }
+
+                & .marksTable {
+                    & table {
+                        text-align: center;
+                        vertical-align: middle;
+                        border: 1px solid #c1b7b7;
+
+                        & thead {
+                            & th {
+                                font-family: m.$fontRegular;
+                                background-color: m.$projYellow;
+
+                                &:last-child {
+                                    width: 50px;
+                                }
+                            }
+                        }
+
+                        & tbody {
+                            & tr {
+                                & > td {
+
+                                    font-family: m.$fontRegular;
+
+                                    &:first-child {
+                                        text-transform: capitalize;
+                                        background-color: m.$projLightWhite;
+                                        color: m.$projBlue;
+                                        font-family: m.$fontMedium;
+                                    }
+
+                                    &:last-child {
+                                        & input {
+                                            cursor: pointer;
+                                            width: 15px;
+                                            height: 15px;
+                                            accent-color: #0e780e;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        & input.remarks {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+
+            & .OverAllStatus {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 50px;
+
+                & table {
+                    text-align: center;
+                    vertical-align: middle;
+                }
+
+                & .subjectStatus {
+                    width: 65%;
+                    margin-right: auto;
+
+                    & table {
+                        text-align: left;
+
+                        & thead {
+
+                            & th {
+                                font-family: m.$fontRegular;
+                                background-color: m.$projLightWhite;
+                                text-align: center;
+
+                                &:first-child {
+                                    text-align: left;
+                                }
+                            }
+                        }
+
+                        & tbody {
+
+                            &  tr {
+                                & > td {
+                                    font-family: m.$fontRegular;
+                                    text-align: center;
+
+                                    &:first-child {
+                                        font-family: m.$fontMedium;
+                                        text-align: left;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+                & .studentStatus {
+                    width: 30%;
+                    
+                    & table {
+                        
+                        & thead {
+
+                            & th {
+                                font-family: m.$fontRegular;
+                                background-color: m.$projYellow;
+                            }
+                        }
+
+                        & tbody {
+                            & tr {
+                                & td:nth-child(2) {
+                                    text-transform: capitalize;
+                                }
+
+                                & svg {
+                                    fill: gold;
+                                }
+
+                                & > td {
+                                    font-family: m.$fontRegular;
+                                    &:first-child {
+                                        font-family: m.$fontMedium;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            & .remarksBlock {
+                margin-top: 50px;
+                width: 50%;
+                & table {
+                    vertical-align: middle;
+                    text-align: center;
+
+                    & thead {
+                        & tr {
+                            & th {
+                                font-family: m.$fontRegular;
+                                background-color: m.$projRed;
+                            }
+                        }
+                    }
+
+                    & tbody {
+                        & td {
+                            font-family: m.$fontRegular;
+                            text-transform: capitalize;
+                        }
+                    }
+                }
+            }
+
+            & .approveButton {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+
+                & .button-d  {
+                    background-color: m.$projYellow;
+                    width: 200px;
+                }
+            }
+
+            & .approveError {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: m.$fontBold;
+                font-size: 17px;
+                background-color: m.$projLightWhite;
+                color: m.$projBlue;
+                padding: 5px;
+                width: 50%;
+                margin: 20px auto 0 auto;
+            }
+            
+        }
+    }
 }

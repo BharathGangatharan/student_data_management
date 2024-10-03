@@ -149,3 +149,100 @@ export const getMyClass = (payload) => (dispatch) =>{
         });
     });
 }
+
+export const getMyClassMarks = (payload) => (dispatch) =>{
+    API_POST("GETMYCLASSMARKS", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.GET_MY_CLASS_MARKS,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.GET_MY_CLASS_MARKS,
+            payload: err,
+        });
+    });
+}
+
+export const getMyClassSubjects = (payload) => (dispatch) =>{
+    API_POST("GETMYCLASSSUBJECTS", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.GET_MY_CLASS_SUBJECTS,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.GET_MY_CLASS_SUBJECTS,
+            payload: err,
+        });
+    });
+}
+
+export const getStudentSummary = (payload) => (dispatch) =>{
+    API_POST("DISPLAYMYCLASSSTUDENTSUMMARY", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.DISPLAY_STUDENT_SUMMARY,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.DISPLAY_STUDENT_SUMMARY,
+            payload: err,
+        });
+    });
+}
+
+export const approveStudentsMarks = (payload) => (dispatch) =>{
+    API_POST("APPROVEMARKSTUDENTS", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.APPROVE_MARKS,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.APPROVE_MARKS,
+            payload: err,
+        });
+    });
+}
+
+export const getApprovedStudentsMarks = (payload) => (dispatch) =>{
+    API_POST("GETMYCLASSMARKSAPPROVED", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.GET_APPROVED_STUDENTS_MARKS,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.GET_APPROVED_STUDENTS_MARKS,
+            payload: err,
+        });
+    });
+}
+
+export const resetApproveStudentsMarks  = (payload) => (dispatch) =>{
+    dispatch({
+        type: actionType.RESET_APPROVE_MARKS,
+        payload: payload,
+    });
+}
+
+export const getMyClassSubAverage = (payload) => (dispatch) =>{
+    API_POST("GETMYCLASSSUBAVG", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.GET_CLASS_SUB_AVG,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.GET_CLASS_SUB_AVG,
+            payload: err,
+        });
+    });
+}
