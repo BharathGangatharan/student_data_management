@@ -2,16 +2,19 @@ import React,{useEffect} from 'react';
 import Button from '../../components/button/Button';
 import Container from 'react-bootstrap/Container';
 import { useNavigate } from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Loader from '../../components/loading/Loader';
 import { Bars } from 'react-loader-spinner';
 import {useSendTeacherId} from '../../utils/payload/useStaffPayload';
+import {getAllLeaveApprovals} from '../../store/staffReducer/action';
 
 const StaffHome = () => {
     const navigate = useNavigate();
 
     const sendTeacherId = useSendTeacherId();
+    const dispatch = useDispatch();
     const getClassData = useSelector((state)=>state?.staffReducer);
+    const loginState = useSelector((state)=>state?.loginReducer?.login);
 
     const navigateNext = (e,item)=> {
       e.preventDefault();
@@ -55,8 +58,14 @@ const StaffHome = () => {
 
     useEffect(()=>{
 
+      const getleaveList = {
+        TeacherId: loginState?.TEACHERID,
+        DateOnLeave: null
+      }
+
       if(getClassData?.classList.length === 0) {
         sendTeacherId();
+        dispatch(getAllLeaveApprovals(getleaveList));
       }
         
         // eslint-disable-next-line

@@ -424,35 +424,35 @@ const MarksApproval = () => {
                           <tbody>
                               <tr>
                                 <td>Sub Average</td>
-                                <td>{studentDataState?.getClassSubAvg[0].AVERAGEMARKS}</td>
-                                <td>{studentDataState?.getClassSubAvg[1].AVERAGEMARKS}</td>
-                                <td>{studentDataState?.getClassSubAvg[2].AVERAGEMARKS}</td>
-                                <td>{studentDataState?.getClassSubAvg[3].AVERAGEMARKS}</td>
-                                <td>{studentDataState?.getClassSubAvg[4].AVERAGEMARKS}</td>
+                                <td>{studentDataState?.getClassSubAvg[0]?.AVERAGEMARKS}</td>
+                                <td>{studentDataState?.getClassSubAvg[1]?.AVERAGEMARKS}</td>
+                                <td>{studentDataState?.getClassSubAvg[2]?.AVERAGEMARKS}</td>
+                                <td>{studentDataState?.getClassSubAvg[3]?.AVERAGEMARKS}</td>
+                                <td>{studentDataState?.getClassSubAvg[4]?.AVERAGEMARKS}</td>
                               </tr>
                               <tr>
                                 <td>Student's Passed</td>
-                                <td>{studentDataState?.getClassSubAvg[0].NOOFSTUDENTSPASSED}</td>
-                                <td>{studentDataState?.getClassSubAvg[1].NOOFSTUDENTSPASSED}</td>
-                                <td>{studentDataState?.getClassSubAvg[2].NOOFSTUDENTSPASSED}</td>
-                                <td>{studentDataState?.getClassSubAvg[3].NOOFSTUDENTSPASSED}</td>
-                                <td>{studentDataState?.getClassSubAvg[4].NOOFSTUDENTSPASSED}</td>
+                                <td>{studentDataState?.getClassSubAvg[0]?.NOOFSTUDENTSPASSED}</td>
+                                <td>{studentDataState?.getClassSubAvg[1]?.NOOFSTUDENTSPASSED}</td>
+                                <td>{studentDataState?.getClassSubAvg[2]?.NOOFSTUDENTSPASSED}</td>
+                                <td>{studentDataState?.getClassSubAvg[3]?.NOOFSTUDENTSPASSED}</td>
+                                <td>{studentDataState?.getClassSubAvg[4]?.NOOFSTUDENTSPASSED}</td>
                               </tr>
                               <tr>
                                 <td>Student's Failed</td>
-                                <td>{studentDataState?.getClassSubAvg[0].NOOFSTUDENTSFAILED}</td>
-                                <td>{studentDataState?.getClassSubAvg[1].NOOFSTUDENTSFAILED}</td>
-                                <td>{studentDataState?.getClassSubAvg[2].NOOFSTUDENTSFAILED}</td>
-                                <td>{studentDataState?.getClassSubAvg[3].NOOFSTUDENTSFAILED}</td>
-                                <td>{studentDataState?.getClassSubAvg[4].NOOFSTUDENTSFAILED}</td>
+                                <td>{studentDataState?.getClassSubAvg[0]?.NOOFSTUDENTSFAILED}</td>
+                                <td>{studentDataState?.getClassSubAvg[1]?.NOOFSTUDENTSFAILED}</td>
+                                <td>{studentDataState?.getClassSubAvg[2]?.NOOFSTUDENTSFAILED}</td>
+                                <td>{studentDataState?.getClassSubAvg[3]?.NOOFSTUDENTSFAILED}</td>
+                                <td>{studentDataState?.getClassSubAvg[4]?.NOOFSTUDENTSFAILED}</td>
                               </tr>
                               <tr>
                                 <td>Pass %</td>
-                                <td>{studentDataState?.getClassSubAvg[0].PASSPERCENTAGE}</td>
-                                <td>{studentDataState?.getClassSubAvg[1].PASSPERCENTAGE}</td>
-                                <td>{studentDataState?.getClassSubAvg[2].PASSPERCENTAGE}</td>
-                                <td>{studentDataState?.getClassSubAvg[3].PASSPERCENTAGE}</td>
-                                <td>{studentDataState?.getClassSubAvg[4].PASSPERCENTAGE}</td>
+                                <td>{studentDataState?.getClassSubAvg[0]?.PASSPERCENTAGE}</td>
+                                <td>{studentDataState?.getClassSubAvg[1]?.PASSPERCENTAGE}</td>
+                                <td>{studentDataState?.getClassSubAvg[2]?.PASSPERCENTAGE}</td>
+                                <td>{studentDataState?.getClassSubAvg[3]?.PASSPERCENTAGE}</td>
+                                <td>{studentDataState?.getClassSubAvg[4]?.PASSPERCENTAGE}</td>
                               </tr>
                           </tbody>
                         </Table>

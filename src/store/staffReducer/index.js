@@ -15,7 +15,10 @@ const initialState = {
     displaySummary: [],
     approvedMarks: {},
     getApprovedStudentsList: [],
-    getClassSubAvg: []
+    getClassSubAvg: [],
+    getLeaveApprovals: [],
+    approveStudentLeave: {},
+    rejectStudentLeave: {}
 }
 
 const staffReducer = (state = initialState, action)=>{
@@ -76,6 +79,22 @@ const staffReducer = (state = initialState, action)=>{
             return {
                 ...state, getClassSubAvg: action.payload
             }
+        case actionType.GET_MY_CLASS:
+            return {
+                ...state, getMyClass: action.payload
+            }
+        case actionType.GET_LEAVE_APPROVALS:
+            return {
+                ...state, getLeaveApprovals: action.payload
+            }
+        case actionType.APPROVE_STUDENT_LEAVE:
+            return {
+                ...state, approveStudentLeave: action.payload
+            }
+        case actionType.REJECT_STUDENT_LEAVE:
+            return {
+                ...state, rejectStudentLeave: action.payload
+            }
         case actionType.RESET_STUDENT_MARKS_DATA:
             return {
                 ...state, studentMarksData: []
@@ -83,10 +102,6 @@ const staffReducer = (state = initialState, action)=>{
         case actionType.RESET_DATA:
             return {
                 ...state, updateStudentMarks: action.payload
-            }
-        case actionType.GET_MY_CLASS:
-            return {
-                ...state, getMyClass: action.payload
             }
         case actionType.RESET_APPROVE_MARKS:
             return {

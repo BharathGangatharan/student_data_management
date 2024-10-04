@@ -246,3 +246,48 @@ export const getMyClassSubAverage = (payload) => (dispatch) =>{
         });
     });
 }
+
+export const getAllLeaveApprovals = (payload) => (dispatch) =>{
+    API_POST("GetTeacherLeaveView", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.GET_LEAVE_APPROVALS,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.GET_LEAVE_APPROVALS,
+            payload: err,
+        });
+    });
+}
+
+export const leaveApprove = (payload) => (dispatch) =>{
+    API_POST("LeaveApproval", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.APPROVE_STUDENT_LEAVE,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.APPROVE_STUDENT_LEAVE,
+            payload: err,
+        });
+    });
+}
+
+export const leaveReject = (payload) => (dispatch) =>{
+    API_POST("LeaveRejection", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.REJECT_STUDENT_LEAVE,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.REJECT_STUDENT_LEAVE,
+            payload: err,
+        });
+    });
+}

@@ -10,6 +10,7 @@ import {updatePassword} from  '../../store/staffReducer/action';
 import { ColorRing } from 'react-loader-spinner';
 import Loader from '../../components/loading/Loader';
 import { TiTickOutline } from "react-icons/ti";
+import LeaveAccordion from '../../components/accordion/LeaveAccordion';
 
 const StaffProfile = () => {
 
@@ -116,106 +117,109 @@ const StaffProfile = () => {
             <Container>
                 <Row>
                     <Col sm={12}>
-                    <h2>User profile</h2>
-                    <div className='profileContent'>
-                        <Col md={7}>
-                            <div className='information'>
-                                <Row>
-                                    <Col>
-                                        <h4>Name:</h4>
-                                    </Col>
-                                    <Col>
-                                        <div>{getTeacherData?.NAME}</div>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <h4>Email:</h4>
-                                    </Col>
-                                    <Col>
-                                        <div>{getTeacherData?.EMAIL}</div>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <h4>DOB:</h4>
-                                    </Col>
-                                    <Col>
-                                        <div>{getTeacherData?.DATEOFBIRTH.split('T')[0]}</div>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <h4>Gender:</h4>
-                                    </Col>
-                                    <Col>
-                                        <div>{getTeacherData?.GENDER}</div>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <h4>Blood Group:</h4>
-                                    </Col>
-                                    <Col>
-                                        <div>{getTeacherData?.BLOODGROUP}</div>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <h4>Ph No:</h4>
-                                    </Col>
-                                    <Col>
-                                        <div>91+{getTeacherData?.CONTACT}</div>
-                                    </Col>
-                                </Row>
-                            </div>
-                        </Col>
-                        <Col md={5}>
-                            <div className='updatePasswordWrapper'>
-                                {
-                                    showUpdateForm ? <Button label={'Update & Submit'} className={`${!(errorStatus) ? 'enabled':'disabled'}`} onClick={submitUpdatePwdHandler} /> : <Button label={'Update Password'} onClick={showUpdatedFormHandler} /> 
-                                }
-                                
+                        <h2>User profile</h2>
+                        <div className='profileContent'>
+                            <Col md={7}>
+                                <div className='information'>
+                                    <Row>
+                                        <Col>
+                                            <h4>Name:</h4>
+                                        </Col>
+                                        <Col>
+                                            <div>{getTeacherData?.NAME}</div>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <h4>Email:</h4>
+                                        </Col>
+                                        <Col>
+                                            <div>{getTeacherData?.EMAIL}</div>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <h4>DOB:</h4>
+                                        </Col>
+                                        <Col>
+                                            <div>{getTeacherData?.DATEOFBIRTH.split('T')[0]}</div>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <h4>Gender:</h4>
+                                        </Col>
+                                        <Col>
+                                            <div>{getTeacherData?.GENDER}</div>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <h4>Blood Group:</h4>
+                                        </Col>
+                                        <Col>
+                                            <div>{getTeacherData?.BLOODGROUP}</div>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <h4>Ph No:</h4>
+                                        </Col>
+                                        <Col>
+                                            <div>91+{getTeacherData?.CONTACT}</div>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            </Col>
+                            <Col md={5}>
+                                <div className='updatePasswordWrapper'>
                                     {
-                                        showUpdateForm && (
-                                            <div className="updatePasswordForm">
-                                                <Form>
-                                                    <Form.Group controlId="updateBasicPassword">
-                                                    <Form.Label>New Password</Form.Label>
-                                                    <Form.Control value={updatePwdInput} name="newPassword" type="text" placeholder="Enter your new password" onChange={(e)=>{inputUpdatePwdHandler(e)}} onBlur={(e)=>{focusoutPwdHandler(e)}}/>
-                                                    {mainErr.lowerCaseErr !== "" && <span className='errorMsg'>{mainErr.lowerCaseErr}</span>}
-                                                    {mainErr.upperCaseErr !== "" && <span className='errorMsg'>{mainErr.upperCaseErr}</span>}
-                                                    {mainErr.digitErr !== "" && <span className='errorMsg'>{mainErr.digitErr}</span>}
-                                                    {mainErr.lengthErr !== "" && <span className='errorMsg'>{mainErr.lengthErr}</span>}
-                                                    {loadingStatus &&
-                                                        <Loader horizontal={true}>
-                                                            <ColorRing
-                                                                visible={true}
-                                                                height="50"
-                                                                width="50"
-                                                                ariaLabel="color-ring-loading"
-                                                                wrapperStyle={{}}
-                                                                wrapperClass="color-ring-wrapper"
-                                                                colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
-                                                            />
-                                                        </Loader>}
-                                                    </Form.Group>
-                                                </Form>
-                                            </div>
-                                        )
+                                        showUpdateForm ? <Button label={'Update & Submit'} className={`${!(errorStatus) ? 'enabled':'disabled'}`} onClick={submitUpdatePwdHandler} /> : <Button label={'Update Password'} onClick={showUpdatedFormHandler} /> 
                                     }
-                                {
-                                    updatePwdStatus && 
-                                        <div className='successWrapper'>
-                                            <span className='pwdSuccess'>Password Updated Successfully</span>
-                                            <div className='successIconWrapper'>
-                                                <TiTickOutline />
+                                    
+                                        {
+                                            showUpdateForm && (
+                                                <div className="updatePasswordForm">
+                                                    <Form>
+                                                        <Form.Group controlId="updateBasicPassword">
+                                                        <Form.Label>New Password</Form.Label>
+                                                        <Form.Control value={updatePwdInput} name="newPassword" type="text" placeholder="Enter your new password" onChange={(e)=>{inputUpdatePwdHandler(e)}} onBlur={(e)=>{focusoutPwdHandler(e)}}/>
+                                                        {mainErr.lowerCaseErr !== "" && <span className='errorMsg'>{mainErr.lowerCaseErr}</span>}
+                                                        {mainErr.upperCaseErr !== "" && <span className='errorMsg'>{mainErr.upperCaseErr}</span>}
+                                                        {mainErr.digitErr !== "" && <span className='errorMsg'>{mainErr.digitErr}</span>}
+                                                        {mainErr.lengthErr !== "" && <span className='errorMsg'>{mainErr.lengthErr}</span>}
+                                                        {loadingStatus &&
+                                                            <Loader horizontal={true}>
+                                                                <ColorRing
+                                                                    visible={true}
+                                                                    height="50"
+                                                                    width="50"
+                                                                    ariaLabel="color-ring-loading"
+                                                                    wrapperStyle={{}}
+                                                                    wrapperClass="color-ring-wrapper"
+                                                                    colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                                                                />
+                                                            </Loader>}
+                                                        </Form.Group>
+                                                    </Form>
+                                                </div>
+                                            )
+                                        }
+                                    {
+                                        updatePwdStatus && 
+                                            <div className='successWrapper'>
+                                                <span className='pwdSuccess'>Password Updated Successfully</span>
+                                                <div className='successIconWrapper'>
+                                                    <TiTickOutline />
+                                                </div>
                                             </div>
-                                        </div>
-                                }
-                            </div>
-                        </Col>
-                    </div>
+                                    }
+                                </div>
+                            </Col>
+                        </div>
+                        <div className='leaveAccordion'>
+                            <LeaveAccordion />
+                        </div>
                     </Col>
                 </Row>
             </Container>

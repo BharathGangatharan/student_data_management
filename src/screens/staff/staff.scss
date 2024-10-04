@@ -472,6 +472,76 @@
                 }
             }
         }
+
+        .leaveAccordion {
+            width: 70%;
+            margin-right: auto;
+            padding-left: 80px;
+            margin-top: 30px;
+
+            .accordion-header {
+                padding: 0;
+
+                & button {
+                    background-color: m.$projRed;
+                    color: m.$projWhite;
+
+                    &:focus {
+                        outline: none !important;
+                        box-shadow: none !important;
+                        border: none !important;
+                    }
+                }
+            }
+
+            & table {
+                vertical-align: middle;
+                text-align: center;
+
+                & thead {
+                    & > tr {
+                        & th {
+                            font-family: m.$fontRegular;
+                        }
+                    }
+                }
+
+                & tbody {
+
+                    & tr {
+                        & td {
+                            &:first-child {
+                                text-transform: capitalize;
+                            }
+                        }
+                    }
+                    & .approve, & .reject {
+                        & svg {
+                            font-size: 25px;
+                            cursor: pointer;
+                        }
+                    }
+
+                    & .approve {
+                        & svg {
+                            fill: #0e780e;
+                        }
+                    }
+
+                    & .reject {
+                        & svg {
+                            fill: m.$projRed;
+                        }
+                    }
+                }
+            }
+
+            & .errorMsg {
+                color: m.$projRed;
+                font-family: m.$fontMedium;
+                font-size: 14px;
+            }
+        }
     }
 
 }
