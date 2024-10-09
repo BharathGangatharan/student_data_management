@@ -1,0 +1,33 @@
+@use '../../styles/main.scss' as m;
+
+.banner {
+    width: 100%;
+    overflow: hidden;
+    background-color: #ef4b4c;
+    position: sticky;
+    top: 82.5px;
+    left: 0;
+    padding: 5px 0;
+    z-index: 95;
+    display: flex;
+    align-items: center;
+
+    & .bannerText {
+        animation: marquee 15s linear infinite; // Adjusted the timing
+        white-space: nowrap;
+        color: m.$projWhite;
+        font-family: m.$fontMedium;
+        font-size: 15px;
+        display: inline-block;
+        width: 100%; // Adjusted to prevent gap
+
+        & span {
+            padding-right: 60%; /* Adjust padding for spacing between repeated text */
+        }
+    }
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}

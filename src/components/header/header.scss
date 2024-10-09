@@ -8,7 +8,7 @@
     justify-content: flex-end;
     align-items: center;
     background-color: m.$projLightWhite;
-    padding: 15px 15px 15px 0;
+    padding: 10px 15px 10px 0;
     z-index: 99;
     box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1);
 
@@ -16,6 +16,7 @@
         font-size: 30px;
         font-family: m.$fontMedium;
         margin-right: 15px;
+        color: m.$projBlue;
     }
 
     & > div:last-child {

@@ -2,7 +2,8 @@
 
 .adminTimeTableContainer {
     background-color: m.$projBlue;
-    padding: 30px 0 100px;
+    padding: 30px 0 50px;
+    min-height: 100vh;
 
     & .timeTableContent {
         padding: 10px 0;
@@ -18,7 +19,7 @@
             justify-content: center;
             align-items: center;
             padding: 50px 20px;
-            margin-top: 130px;
+            margin-top: 50px;
             background-color: m.$projWhite;
             font-size: 18px;
             font-family: m.$fontMedium;
@@ -55,6 +56,12 @@
                     }
                     
                 }
+            }
+
+            & .button-d {
+                background: m.$projLightWhite;
+                margin-left: 40px;
+                padding: 5px 7px;
             }
         }
 
@@ -123,6 +130,15 @@
                                 background-color: m.$projLightWhite;
                                 border: 1px solid #707074;
                                 font-family: m.$fontRegular;
+                            }
+
+                            &.selected {
+                                color: m.$projBlue;
+                                font-family: m.$fontMedium;
+                            }
+
+                            &.not_selected {
+                                color: m.$projRed;
                             }
                         }
                     }

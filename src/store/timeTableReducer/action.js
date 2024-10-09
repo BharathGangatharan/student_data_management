@@ -67,3 +67,18 @@ export const resetTimeTableSubjectList = (payload) => (dispatch) =>{
         payload: payload,
     });
 }
+
+export const getUpdatedTimeTable = (payload) => (dispatch) => {    
+    API_POST("GetTimeTable", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.GET_UPDATED_TIME_TABLE,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.GET_UPDATED_TIME_TABLE,
+            payload: err,
+        });
+    });
+};

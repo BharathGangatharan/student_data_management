@@ -4,7 +4,8 @@ const initialState = {
     tableAllClassList: [],
     tableSubjectList: [],
     tableUpdate: {},
-    staffTimeTable: []
+    staffTimeTable: [],
+    getTimeTable: []
 }
 
 const timeTableReducer = (state = initialState, action)=>{
@@ -24,6 +25,10 @@ const timeTableReducer = (state = initialState, action)=>{
         case actionType.GET_STAFF_TIME_TABLE:
             return {
                 ...state, staffTimeTable: action.payload
+            }
+        case actionType.GET_UPDATED_TIME_TABLE:
+            return {
+                ...state, getTimeTable: action.payload
             }
         case actionType.RESET_SUBJECT_DATA:
             return {
