@@ -10,6 +10,10 @@ import {updatePassword} from  '../../store/staffReducer/action';
 import { ColorRing } from 'react-loader-spinner';
 import Loader from '../../components/loading/Loader';
 import { TiTickOutline } from "react-icons/ti";
+import { MdEmail,MdBloodtype,MdDateRange} from "react-icons/md";
+import { FaSquarePhone } from "react-icons/fa6";
+import { FaUserCircle,FaMale,FaFemale } from "react-icons/fa";
+
 import LeaveAccordion from '../../components/accordion/LeaveAccordion';
 
 const StaffProfile = () => {
@@ -117,7 +121,7 @@ const StaffProfile = () => {
             <Container>
                 <Row>
                     <Col sm={12}>
-                        <h2>User profile</h2>
+                        <h2>Your Profile</h2>
                         <div className='profileContent'>
                             <Col md={7}>
                                 <div className='information'>
@@ -126,7 +130,7 @@ const StaffProfile = () => {
                                             <h4>Name:</h4>
                                         </Col>
                                         <Col>
-                                            <div>{getTeacherData?.NAME}</div>
+                                            <div><span className="icon"><FaUserCircle/></span>{getTeacherData?.NAME}</div>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -134,7 +138,7 @@ const StaffProfile = () => {
                                             <h4>Email:</h4>
                                         </Col>
                                         <Col>
-                                            <div>{getTeacherData?.EMAIL}</div>
+                                            <div><span className="icon"><MdEmail/></span>{getTeacherData?.EMAIL}</div>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -142,7 +146,7 @@ const StaffProfile = () => {
                                             <h4>DOB:</h4>
                                         </Col>
                                         <Col>
-                                            <div>{getTeacherData?.DATEOFBIRTH.split('T')[0]}</div>
+                                            <div><span className="icon"><MdDateRange/></span>{getTeacherData?.DATEOFBIRTH.split('T')[0]}</div>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -150,7 +154,7 @@ const StaffProfile = () => {
                                             <h4>Gender:</h4>
                                         </Col>
                                         <Col>
-                                            <div>{getTeacherData?.GENDER}</div>
+                                            <div><span className="icon"><FaMale/></span>{getTeacherData?.GENDER}</div>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -158,7 +162,7 @@ const StaffProfile = () => {
                                             <h4>Blood Group:</h4>
                                         </Col>
                                         <Col>
-                                            <div>{getTeacherData?.BLOODGROUP}</div>
+                                            <div><span className="icon"><MdBloodtype/></span>{getTeacherData?.BLOODGROUP}</div>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -166,7 +170,7 @@ const StaffProfile = () => {
                                             <h4>Ph No:</h4>
                                         </Col>
                                         <Col>
-                                            <div>91+{getTeacherData?.CONTACT}</div>
+                                            <div><span className="icon"><FaSquarePhone/></span>91+&nbsp;{getTeacherData?.CONTACT}</div>
                                         </Col>
                                     </Row>
                                 </div>
