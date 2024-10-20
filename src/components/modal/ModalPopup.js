@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import './modal.scss';
 import { IoClose } from "react-icons/io5";
 
-const ModalPopup = ({modalTitle,modalShow,modalHide,children}) => {
+const ModalPopup = ({modalTitle,modalShow,modalHide,className,children}) => {
 
   //close the modal
   const handleClose = () => {
@@ -11,7 +11,7 @@ const ModalPopup = ({modalTitle,modalShow,modalHide,children}) => {
   };
 
   return (
-    <Modal show={modalShow} centered size='lg'>
+    <Modal show={modalShow} centered size='lg' className={className}>
       <Modal.Header closeButton={false}>
           <Modal.Title>{modalTitle}</Modal.Title>
           <IoClose onClick={handleClose}/>

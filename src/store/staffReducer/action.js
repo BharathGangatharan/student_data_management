@@ -291,3 +291,91 @@ export const leaveReject = (payload) => (dispatch) =>{
         });
     });
 }
+
+export const createTaskList = (payload) => (dispatch) =>{
+    API_POST("ENTERTASKENTRIES", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.CREATE_TASK_LIST,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.CREATE_TASK_LIST,
+            payload: err,
+        });
+    });
+}
+
+export const editTaskList = (payload) => (dispatch) =>{
+    API_POST("TOEDITTASKS", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.EDIT_TASK_LIST,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.EDIT_TASK_LIST,
+            payload: err,
+        });
+    });
+}
+
+export const deleteTaskList = (payload) => (dispatch) =>{
+    API_POST("TODELETETASKS", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.DELETE_TASK_LIST,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.DELETE_TASK_LIST,
+            payload: err,
+        });
+    });
+}
+
+export const getTaskList = (payload) => (dispatch) =>{
+    API_POST("GETLISTTASKS", payload)
+    .then(res => {
+        dispatch({
+            type: actionType.GET_TASK_LIST,
+            payload: res,
+        });
+    }).catch(err => {
+        dispatch({
+            type: actionType.GET_TASK_LIST,
+            payload: err,
+        });
+    });
+}
+
+export const resetCreateTaskList  = (payload) => (dispatch) =>{
+    dispatch({
+        type: actionType.RESET_CREATE_TASK_LIST,
+        payload: payload,
+    });
+}
+
+export const resetEditTaskList  = (payload) => (dispatch) =>{
+    dispatch({
+        type: actionType.RESET_EDIT_TASK_LIST,
+        payload: payload,
+    });
+}
+
+export const resetDeleteTaskList  = (payload) => (dispatch) =>{
+    dispatch({
+        type: actionType.RESET_DELETE_TASK_LIST,
+        payload: payload,
+    });
+}
+
+export const resetGetTaskList  = (payload) => (dispatch) =>{
+    dispatch({
+        type: actionType.RESET_GET_TASK_LIST,
+        payload: payload,
+    });
+}

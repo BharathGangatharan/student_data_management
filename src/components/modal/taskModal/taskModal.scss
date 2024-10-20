@@ -1,0 +1,36 @@
+@use '../../../styles/main.scss' as m;
+
+#taskCreate {
+
+    form {
+        & > div {
+            margin-bottom: 20px;
+
+            & .react-datepicker-wrapper {
+                display: block;
+            }
+
+            &:last-of-type {
+                margin-bottom: 5px;
+            }
+        }
+
+        & .error {
+            font-size: 14px;
+            font-family: m.$fontBold;
+            color: m.$projRed;
+        }
+    }
+
+    & .buttonBlock {
+        display: flex;
+        justify-content: center;
+        margin-top: 25px;
+
+        & .button-d {
+            background-color: m.$projGreen;
+            color: m.$projWhite;
+            width: 150px;
+        }
+    }
+}

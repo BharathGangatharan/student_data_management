@@ -38,10 +38,14 @@ const StaffHome = () => {
         }
     }
 
-    const navigateAttendance = (e,item)=>{
+    const navigateTask = (e,item)=>{
       e.preventDefault();
         if(e.target.classList.contains('button-d') && !e.target.classList.contains('approval')) {
-            navigate(`attendance/${item.CLASSDESCRIPTION.replace(" ","")}`);
+            navigate('task/',{
+              state:{
+                data:item
+              }
+            });
         }
     }
 
@@ -114,9 +118,9 @@ const StaffHome = () => {
                           }}
                         />
                         <Button
-                          label={"Attendance"}
+                          label={"Task"}
                           onClick={(e) => {
-                            navigateAttendance(e, item);
+                            navigateTask(e, item);
                           }}
                         />
                       </div>
@@ -150,13 +154,13 @@ const StaffHome = () => {
                   <Button
                     label={"Attendance"}
                     onClick={(e) => {
-                      navigateAttendance(e, getClassData?.getMyClass);
+                      navigateTask(e, getClassData?.getMyClass);
                     }}
                   />
                   <Button
                     label={"Timetable"}
                     onClick={(e) => {
-                      navigateAttendance(e, getClassData?.getMyClass);
+                      navigateTask(e, getClassData?.getMyClass);
                     }}
                   />
                 </div>

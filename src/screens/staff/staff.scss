@@ -794,3 +794,180 @@
         }
     }
 }
+
+// task update
+#taskId {
+    background-color: m.$projGreen;
+    padding-bottom: 150px;
+
+    & .taskContainerHeader {
+        text-align: center;
+        font-size: 24px;
+        font-family: m.$fontMedium;
+        color: m.$projWhite;
+        padding-top: 10px;
+    }
+
+    & .taskContent {
+        display: flex;
+        align-items: center;
+
+        & .addButton {
+            position: relative;
+            max-width: 200px;
+
+            & svg {
+                position: absolute;
+                top: 4px;
+                right: 25px;
+                fill: m.$projGreen;
+                font-size: 30px;
+                cursor: pointer;
+            }
+
+            & .button-d {
+                width: 200px;
+                background-color: m.$projYellow;
+                color: m.$projMidNitBlue;
+            }
+        }
+
+        & .datePicker {
+            padding-left: 30px;
+            position: relative;
+
+            & svg {
+                position: absolute;
+                top: 6px;
+                left: 34px;
+                z-index: 10;
+                font-size: 25px;
+                fill: m.$projGreen;
+            }
+
+            & span {
+                color: m.$projWhite;
+                font-family: m.$fontMedium;
+                font-size: 18px;
+                padding-right: 5px;
+            }
+
+            & input {
+                cursor: pointer;
+                padding: 6px 0;
+                border-radius: 2px;
+                outline: none;
+                border: none;
+                box-shadow: none;
+                font-size: 18px;
+                font-family: m.$fontMedium;
+                width: 160px;
+                background-color: m.$projLightWhite;
+                color: m.$projGreen;
+                padding-left: 40px;
+            }
+        }
+    }
+
+    & .showTaskLists {
+        padding: 30px 10px;
+        background-color: m.$projLightWhite;
+        border-radius: 5px;
+        width: 750px;
+        margin: 70px auto 0 auto;
+
+        & .taskMainHeader {
+            font-family: m.$fontBold;
+            font-size: 22px;
+            width: 670px;
+            margin: 0 auto 20px auto;
+            color: m.$projGreen;
+            text-decoration: underline;
+        }
+
+        & .taskContainer {
+            background-color: m.$projGreen;
+            padding: 10px;
+            font-family: m.$fontRegular;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 670px;
+            border-radius: 3px;
+            margin: 0 auto 18px auto;
+
+            & > div {
+
+                color: m.$projWhite;
+
+                &:first-child {
+                    font-family: m.$fontBold;
+                    min-width: 150px;
+                }
+
+                &:nth-child(2) {
+                    & span {
+                        color: m.$projYellow;
+                        font-family: m.$fontMedium;
+                    }
+                }
+
+                &:nth-child(3) {
+
+                    & span {
+                        color: m.$projRed;
+                        font-family: m.$fontMedium;
+                    }
+                }
+
+                &:last-child {
+                    & svg {
+                        fill: m.$projYellow;
+                    }
+                }
+
+                & svg {
+                    fill: m.$projWhite;
+                    font-size: 25px;
+                    cursor: pointer;
+                }
+            }
+
+            & .button-d {
+                background-color: m.$projYellow;
+                color: m.$projMidNitBlue;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.taskModal {
+
+    & .modal-dialog {
+        max-width: 35%;
+
+        & .modal-content {
+            & .modal-header {
+                padding: 10px;
+                background-color: m.$projYellow;
+
+                & .modal-title {
+                    font-size: 20px;
+                    color: m.$projMidNitBlue;
+                }
+
+                & svg {
+                    fill: m.$projMidNitBlue;
+                }
+            }
+
+            & .modal-body {
+                background-color: m.$projWhite;
+            }
+        }
+    }
+}

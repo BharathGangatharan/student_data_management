@@ -18,7 +18,11 @@ const initialState = {
     getClassSubAvg: [],
     getLeaveApprovals: [],
     approveStudentLeave: {},
-    rejectStudentLeave: {}
+    rejectStudentLeave: {},
+    createTaskList: {},
+    editTaskList: {},
+    deleteTaskList: {},
+    getTaskList: []
 }
 
 const staffReducer = (state = initialState, action)=>{
@@ -95,6 +99,22 @@ const staffReducer = (state = initialState, action)=>{
             return {
                 ...state, rejectStudentLeave: action.payload
             }
+        case actionType.CREATE_TASK_LIST:
+            return {
+                ...state, createTaskList: action.payload
+            }
+        case actionType.EDIT_TASK_LIST:
+            return {
+                ...state, editTaskList: action.payload
+            }
+        case actionType.DELETE_TASK_LIST:
+            return {
+                ...state, deleteTaskList: action.payload
+            }
+        case actionType.GET_TASK_LIST:
+            return {
+                ...state, getTaskList: action.payload
+            }
         case actionType.RESET_STUDENT_MARKS_DATA:
             return {
                 ...state, studentMarksData: []
@@ -106,6 +126,22 @@ const staffReducer = (state = initialState, action)=>{
         case actionType.RESET_APPROVE_MARKS:
             return {
                 ...state, approvedMarks: action.payload
+            }
+        case actionType.RESET_CREATE_TASK_LIST:
+            return {
+                ...state, createTaskList: action.payload
+            }
+        case actionType.RESET_EDIT_TASK_LIST:
+            return {
+                ...state, editTaskList: action.payload
+            }
+        case actionType.RESET_DELETE_TASK_LIST:
+            return {
+                ...state, deleteTaskList: action.payload
+            }
+        case actionType.RESET_GET_TASK_LIST:
+            return {
+                ...state, getTaskList: action.payload
             }
         default:
             return state;
